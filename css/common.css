@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    margin: 0px;
+    border-radius: 15px;
+}
+
+html, body{
+    height: 100%;
+}
+
+.contenedor-gral{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 2;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/neuroeconomia-portada.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-weight: bold;
+    font-size: 3vh;
+}
+
+
+/* CUERPO */
+.cuerpo{
+    display: flex;
+    flex-direction: row;
+    flex: 8;
+}
+
+
+/* BARRA IZQUIERDA */
+.cuerpo-izq {
+    background-color: #E8F4FB;
+    flex: 1;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2%;
+    gap: 3vh;
+}
+
+.cuerpo-izq ul.botones{
+    list-style: none;
+    padding-inline-start: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cuerpo-izq ul.botones button{
+    width: 100%;
+    height: 4vh;
+    font-weight: bold;
+    background-color: #72BAE8;
+    color: #FFF;
+}
+
+.cuerpo-izq li{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.cuerpo-izq li:first-of-type{
+    justify-content: flex-end;
+}
+
+.cuerpo-izq ul.botones button.inicio-button{
+    width: 50%;
+}
+
+.cuerpo-izq div.contenedor-reseña {
+    background-color: #fff;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.cuerpo-izq div.persona {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuerpo-izq div.persona img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    padding: 10px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.cuerpo-izq div.persona h2 {
+    text-align: center;
+    font-size: medium;
+    padding-right: 10px;
+}
+
+.cuerpo-izq div.contenedor-reseña p {
+    text-align: center;
+    font-size: small;
+    padding: 10px;
+    flex: 1;
+}
+
+
+/* BARRA DERECHA*/
+.cuerpo-der{
+    flex-direction: column;
+    flex: 5;
+    display: flex;
+}
+
+div.cuerpo-der div{
+    background-color: rgb(137, 105, 251);
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.cuerpo-der main{
+    background-color: rgb(201, 232, 222);
+    flex: 3;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* FOOTER */
+footer{
+    background-color: #FEE599;
+    flex: 3;
+    margin: 5px;
+
+}
+div.contenedor-footer-sup{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding:10px
+}
+div.listas-footer ul{
+    list-style-type:"> ";
+    padding-left:13px;
+}
+div.contenedor-footer-sup{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 20vh;               /* OJO ACÁ*/
+}
+
+.contenedor-footer-sup div:last-of-type{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end !important;
+}
+
+div.contenedor-footer-sup div ul a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+div.contenedor-footer-sup p.contenedor-a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.contenedor-footer-sup div{
+    height: 100%;
+}
+
+.ultimo{
+    height: 100%;
+}
+
+.ultimo div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+div.contenedor-footer-inf{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:10px
+}
