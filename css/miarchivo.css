@@ -1,3 +1,11 @@
+.cuerpo-izq ul.botones li:nth-child(2) button {
+    background-color: rgba(72, 201, 176, 0.7);
+}
+
+.cuerpo-izq ul.botones li:nth-child(2) button:hover {
+    cursor: default;
+}
+
 /* TÍTULO DE LA PÁGINA MI ARCHIVO */
 .titulo{
     display: flex;
