@@ -1,33 +1,71 @@
-.cuerpo-izq ul.botones li:nth-child(2) button {
-    background-color: rgba(72, 201, 176, 0.7);
-}
-
-.cuerpo-izq ul.botones li:nth-child(2) button:hover {
-    cursor: default;
-}
-
-/* TITULO DE LA PÁGINA*/
+/* TÍTULO DE LA PÁGINA MI ARCHIVO */
 .titulo{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }   
 
 /* CONTENEDOR GENERAL DE LA PÁGINA "MI ARCHIVO"*/
-.contenedor-miarchivo{
 
+.contenedor-miarchivo{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 /*TABLA DE COTIZACIONES*/
 
 /*General*/
 .tabla{
-    background-color: rgb(211, 131, 144);
-    text-align: center;
-    width: 50vw;
-    height: 50vh;
-    font-size: 1vw;
+    background-color: rgb(229, 219, 219);
     display: flex;
+    flex: 8;
+    max-height: 45vh;
+    overflow: auto;
+    border: 1px solid black;
+}
+
+tbody{    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .fila{
-    
-}   
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 3px 0px; /* sacar este padding si se quiere hacer el borde entre columnas */
+}
+
+th, td{
+    width: 100%;
+    border-radius: 0%;
+}
+
+.contenido-fecha{
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 20px;
+    border: 1px solid rgb(124, 116, 116);
+}
+
+.columna-moneda{
+    text-align: left;
+    height: 100%;
+}
+
+.columna-borrar{
+    color: #C55A11;
+    font-size: 20px; /* ojo responsive */
+}
+
+/*FALTA:
+- PONER EL FIXED EN LA FILA DE CATEGORÍAS
+- AGREGAR IMPRESORA
+- AGREGAR EL BORDEADO ENTRE COLUMNAS
+- COMPLETAR COMENTARIOS
+- VER TEMA RESPONSIVE*/
