@@ -12,7 +12,19 @@
     align-items: center;
     justify-content: center;
     flex: 1;
-}   
+    text-align: center;
+}
+
+.titulo tbody, tr { /*ver*/
+    width: 100%;
+    display: flex;
+}
+
+.icono{
+    font-size: 150%;
+    color: rgb(28, 61, 124);
+}
+
 
 /* CONTENEDOR GENERAL DE LA PÁGINA "MI ARCHIVO"*/
 
@@ -29,22 +41,27 @@
 .tabla{
     background-color: rgb(229, 219, 219);
     display: flex;
+    flex-direction: column;
     flex: 8;
-    max-height: 45vh;
-    overflow: auto;
+    max-height: 45vh; /* ------------------------------- ver esto */
     border: 1px solid black;
 }
 
-tbody{    
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+thead{
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+tbody{
+    overflow: auto;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
 }
 
 .fila{
     text-align: center;
     display: flex;
-    justify-content: space-around;
     padding: 3px 0px; /* sacar este padding si se quiere hacer el borde entre columnas */
 }
 
@@ -54,26 +71,23 @@ th, td{
 }
 
 .contenido-fecha{
-    display: flex;
-    justify-content: flex-start;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 2%;
     border: 1px solid rgb(124, 116, 116);
 }
 
+/* Nombre de la moneda */
 .columna-moneda{
     text-align: left;
-    height: 100%;
 }
 
+/* Ícono para borrar */
 .columna-borrar{
     color: #C55A11;
     font-size: 20px; /* ojo responsive */
 }
 
 /*FALTA:
-- PONER EL FIXED EN LA FILA DE CATEGORÍAS
-- AGREGAR IMPRESORA
 - AGREGAR EL BORDEADO ENTRE COLUMNAS
 - COMPLETAR COMENTARIOS
 - VER TEMA RESPONSIVE*/
