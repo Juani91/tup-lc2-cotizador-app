@@ -5,3 +5,104 @@
 .cuerpo-izq ul.botones li:nth-child(3) button:hover {
     cursor: default;
 }
+
+
+/* GENERAL */
+
+.contenedor-informes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+/* TITULO */
+.titulo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* MITAD SUPERIOR */
+.mitad-superior {
+    background-color: lightcoral;
+    flex: 5;
+    display: flex;
+}
+
+.superior-izquierda, .superior-derecha {
+    width: 50%;
+}
+
+/* Superior izquierda */
+.superior-izquierda {
+    display: flex;
+    flex-direction: column;
+}
+
+.selector-contenedor {
+    background-color: lightgray;
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selector-contenido {
+    background-color: lightgreen;
+    width: 90%;
+    padding: 2%;
+}
+
+.seleccionable {
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+}
+
+.compartir-info {
+    background-color: lightgreen;
+    flex: 1;
+}
+
+/* Superior derecha */
+.superior-derecha {
+    display: flex;
+    
+}
+
+.grafico {
+    background-color: lightskyblue;
+    flex: 1;
+}
+
+
+/* MITAD INFERIOR */
+.mitad-inferior {
+    background-color: lightpink;
+    flex: 3;
+}
+
+/*
+<div class="contenedor-informes">
+    <div class="titulo">
+        <h2>Informes</h2>
+    </div>
+    <div class="mitad-superior">
+        <div class="superior-izquierda">
+            <div class="selec
+            </div>
+            <div class="compartir-i
+            </div>
+        </div>
+        <div class="superior-derecha">
+            <div class="graf
+            </div>
+        </div>
+    </div>
+    <div class="mitad-inferior">
+        
+    </div>
+*/

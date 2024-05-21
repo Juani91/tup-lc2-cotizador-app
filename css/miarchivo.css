@@ -6,6 +6,15 @@
     cursor: default;
 }
 
+/* CONTENEDOR GENERAL DE LA PÁGINA "MI ARCHIVO"*/
+
+.contenedor-miarchivo{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
 /* TÍTULO DE LA PÁGINA MI ARCHIVO */
 .titulo{
     display: flex;
@@ -23,16 +32,6 @@
 .icono{
     font-size: 150%;
     color: rgb(28, 61, 124);
-}
-
-
-/* CONTENEDOR GENERAL DE LA PÁGINA "MI ARCHIVO"*/
-
-.contenedor-miarchivo{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
 }
 
 /*TABLA DE COTIZACIONES*/

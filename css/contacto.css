@@ -5,3 +5,103 @@
 .cuerpo-izq ul.botones li:nth-child(4) button:hover {
     cursor: default;
 }
+
+main{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:2%;
+}
+
+.general{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100%;
+    width:100%;
+    padding:2%;
+}
+
+.general-izq{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:100%;
+    height: 85%;
+    flex:1;
+    background-color: rgba(93, 137, 123, 0.329);
+}
+table{
+    height: 50%;
+    display:flex;
+    justify-content: space-between;
+}
+td:last-child{
+    display:flex;
+    justify-content: flex-end;
+}
+td input{
+    width:80%;
+    border-radius:0;
+    border:1px solid black;
+}
+td textarea{
+    width:80%;
+    border-radius:0;
+    border:1px solid black;
+    resize:none;
+}
+
+.botones{
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-end;
+}
+button{
+    margin-right:6%;
+    padding:4%;
+}
+
+
+.general-der{
+    display:flex;
+    flex-direction: column;
+    width:70%;
+    flex:2;
+    padding:1%;
+    border:1px solid black;
+}
+.der-arriba{
+    display: flex;
+    align-items: flex-start;
+    height:100%;
+    width:100%;
+    flex-direction: column;
+    padding:1%;
+
+}
+.der-abajo{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height:100%;
+    width:100%;
+    border:0px solid black;
+    padding:1%;
+}
+.abajo-izq{
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding:2%;
+
+}
+.abajo-der{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:2%;
+
+}
+

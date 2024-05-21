@@ -5,3 +5,46 @@
 .cuerpo-izq ul.botones li:nth-child(1) button:hover {
     cursor: default;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1em;
+}
+
+main h2 {
+    text-align: center;
+    padding: 0.5em;
+}
+
+div.selector {
+    display: flex;
+    background-color: gray;
+    width: 50%;
+    gap: 0.5em;
+    padding: 0.5em;
+}
+
+div.selector p {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+#select-moneda-index {
+    height: 2em;
+    border: 0px;
+    border-radius: 0px;
+    appearance: none;
+    flex: 1;
+    cursor: pointer;
+}
+
+div.selector i {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: #0E6251;
+}
