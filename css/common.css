@@ -217,13 +217,12 @@ footer{
     background-color: #FEE599;
     flex: 3;
     margin: 5px;
-
-}
-div.contenedor-footer-sup{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding:10px
+
+}
+div.contenedor-footer{
+    height: inherit;
 }
 div.listas-footer ul{
     list-style-type:"> ";
@@ -232,10 +231,10 @@ div.listas-footer ul{
 div.contenedor-footer-sup{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 20vh;               /* OJO ACÁ*/
+    padding:3%;
+    height: inherit;               /* OJO ACÁ*/
 }
 
 .contenedor-footer-sup div:last-of-type{
@@ -255,23 +254,10 @@ div.contenedor-footer-sup p.contenedor-a {
     justify-content: center;
     align-items: center;
 }
-div.contenedor-footer-sup div{
-    height: 100%;
-}
-
-.ultimo{
-    height: 100%;
-}
-
-.ultimo div{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
 
 div.contenedor-footer-inf{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom:10px
+    padding-bottom:1%;
 }

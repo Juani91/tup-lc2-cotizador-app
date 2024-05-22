@@ -11,7 +11,7 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding:2%;
+    padding:1em;
 }
 
 .general{
@@ -28,15 +28,17 @@ main{
     flex-direction: column;
     justify-content: space-around;
     width:100%;
-    height: 85%;
+    height: 100%;
     flex:1;
     background-color: rgba(93, 137, 123, 0.329);
+    border-radius:10%;
+    padding-left: 2%; 
+    padding-right: 2%;
 }
-table{
-    height: 50%;
-    display:flex;
-    justify-content: space-between;
-}
+
+
+
+
 td:last-child{
     display:flex;
     justify-content: flex-end;
@@ -53,24 +55,32 @@ td textarea{
     resize:none;
 }
 
-.botones{
+
+.botones-abajo{
     display: flex;
     flex-direction:row;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
 }
-button{
-    margin-right:6%;
-    padding:4%;
+div.botones-abajo button{
+    margin-left:3%;
+    padding:1%;
+}
+div.botones-abajo button:first-child{
+    margin-left:9%;
+    padding:1%;
 }
 
 
 .general-der{
     display:flex;
     flex-direction: column;
-    width:70%;
+    height: 100%;
+    width:85%;
     flex:2;
-    padding:1%;
-    border:1px solid black;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 .der-arriba{
     display: flex;
@@ -87,8 +97,9 @@ button{
     align-items: center;
     height:100%;
     width:100%;
-    border:0px solid black;
-    padding:1%;
+    border:2px solid black;
+    margin:1%;
+    margin-bottom:0;
 }
 .abajo-izq{
     display:flex;
