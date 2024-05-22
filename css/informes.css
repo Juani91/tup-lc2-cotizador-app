@@ -27,13 +27,16 @@
 
 /* MITAD SUPERIOR */
 .mitad-superior {
-    background-color: lightcoral;
     flex: 5;
     display: flex;
 }
 
-.superior-izquierda, .superior-derecha {
-    width: 50%;
+.superior-izquierda {
+    width: 40%;
+} 
+
+.superior-derecha {
+    width: 60%;
 }
 
 /* Superior izquierda */
@@ -42,8 +45,8 @@
     flex-direction: column;
 }
 
+/* Selector de monedas */
 .selector-contenedor {
-    background-color: lightgray;
     flex: 3;
     display: flex;
     align-items: center;
@@ -51,20 +54,43 @@
 }
 
 .selector-contenido {
-    background-color: lightgreen;
-    width: 90%;
+    background-color: lightgray;
+    border: 1px solid black;
+    width: 80%;
     padding: 2%;
 }
 
 .seleccionable {
     display: flex;
-    justify-content: space-around;
     margin: 2%;
+    padding-left: 5%;
 }
 
+.seleccionable select {
+    width: 100%;
+}
+
+.fa-filter {
+    padding-left: 1vw;
+}
+
+/* Compartir info */
+
 .compartir-info {
-    background-color: lightgreen;
     flex: 1;
+    padding-left: 5%;
+    display: flex;
+    align-items: end;
+}
+
+.compartir-info a {
+    color: black;
+}
+
+.fa-envelope-open-text {
+    font-size: 2em;
+    padding-right: 2%;
+    color:  rgb(28, 61, 124);
 }
 
 /* Superior derecha */
@@ -74,35 +100,73 @@
 }
 
 .grafico {
-    background-color: lightskyblue;
+    background-color: lightgray;
+    border: 1px solid black;
+    text-align: center;  /* sacar */
+    margin: 2%;
     flex: 1;
 }
 
 
 /* MITAD INFERIOR */
 .mitad-inferior {
-    background-color: lightpink;
-    flex: 3;
+    display: flex;
+    flex: 1;
+    max-height: 40%;
 }
 
-/*
-<div class="contenedor-informes">
-    <div class="titulo">
-        <h2>Informes</h2>
-    </div>
-    <div class="mitad-superior">
-        <div class="superior-izquierda">
-            <div class="selec
-            </div>
-            <div class="compartir-i
-            </div>
-        </div>
-        <div class="superior-derecha">
-            <div class="graf
-            </div>
-        </div>
-    </div>
-    <div class="mitad-inferior">
-        
-    </div>
-*/
+
+/* tabla */
+.tabla {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid black;
+    border-spacing: 0px;
+    background-color: lightgray;
+    margin: 1%;
+}
+
+tbody {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 12vh;
+}
+
+tr, th, td {
+    display: flex;
+    justify-content: center;
+    padding: 0.2% 0%;
+}
+
+th, td {
+    width: 20%;
+    text-align: center;
+    border-radius: 0%;
+}
+
+.tabla th {
+    border-bottom:  1px solid black;
+    border-left: 1px solid black;
+}
+
+.tabla thead th:first-child {
+    border-left: 0px;
+}
+
+.moneda {
+    width: 100%;
+    padding-left: 2%;
+    border-bottom: 1px solid black;
+    justify-content: start;
+}
+
+/* íconos */
+.fa-circle-arrow-up {
+    color: green;
+}
+
+.fa-circle-arrow-down {
+    color: red;
+}
