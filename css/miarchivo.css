@@ -31,26 +31,28 @@
 
 .icono{
     font-size: 150%;
-    color: rgb(28, 61, 124);
+    color: #0E6251;
 }
 
 /*TABLA DE COTIZACIONES*/
 
 /*General*/
 .tabla{
-    background-color: rgb(229, 219, 219);
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     flex: 8;
     max-height: 45vh; /* ------------------------------- ver esto */
-    border: 1px solid black;
+    border: 1px solid gray;
     margin: 0.5%;
+    font-weight: 500;
 }
 
 thead{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
     border-bottom-left-radius: 0%;
     border-bottom-right-radius: 0%;
+    background-color: #ededed;
 }
 
 tbody{
@@ -70,10 +72,16 @@ th, td{
     border-radius: 0%;
 }
 
+th {
+    padding: 0.4em;
+    color: #0E6251;
+}
+
 .contenido-fecha{
     text-align: left;
     padding-left: 2%;
-    border: 1px solid rgb(124, 116, 116);
+    border: 1px solid gray;
+    background-color: #ededed;
 }
 
 /* Nombre de la moneda */

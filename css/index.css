@@ -120,3 +120,34 @@ main div div.valor-container-index:first-of-type i,
 main div div.valor-container-index:last-of-type i {
     color: #0E6251;
 }
+
+main div.texto-abajo-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.2em;
+}
+
+main div.texto-abajo-main p {
+    font-size: 0.8em;
+}
+
+main div.texto-abajo-main p:first-child::before {
+    content: "!";
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 0.1em;
+}
+
+main div.texto-abajo-main p a {
+    border-radius: 0.2em;
+    color: #fff;
+    background-color: #0E6251;
+    padding: 0.1em;
+    text-decoration: none;
+}
+
+main div.texto-abajo-main p a:hover {
+    text-decoration: underline;
+}
