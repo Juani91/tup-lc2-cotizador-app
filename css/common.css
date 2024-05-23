@@ -238,7 +238,7 @@ div.contenedor-footer-sup{
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    padding:3%;
+    padding:2%;
     height: inherit;               /* OJO ACÁ*/
 }
 
