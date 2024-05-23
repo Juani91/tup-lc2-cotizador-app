@@ -54,7 +54,7 @@
 }
 
 .selector-contenido {
-    background-color: lightgray;
+    background-color: rgb(237, 237, 237);
     border: 1px solid black;
     width: 80%;
     padding: 2%;
@@ -72,6 +72,7 @@
 
 .fa-filter {
     padding-left: 1vw;
+    color: rgb(14, 98, 81);
 }
 
 /* Compartir info */
@@ -90,7 +91,7 @@
 .fa-envelope-open-text {
     font-size: 2em;
     padding-right: 2%;
-    color:  rgb(28, 61, 124);
+    color:  rgb(14, 98, 81);
 }
 
 /* Superior derecha */
@@ -100,7 +101,7 @@
 }
 
 .grafico {
-    background-color: lightgray;
+    background-color: rgb(237, 237, 237);
     border: 1px solid black;
     text-align: center;  /* sacar */
     margin: 2%;
@@ -123,15 +124,18 @@
     width: 100%;
     border: 1px solid black;
     border-spacing: 0px;
-    background-color: lightgray;
+    background-color: rgb(237, 237, 237);
     margin: 1%;
 }
 
 tbody {
+    background-color: white;
     display: flex;
     flex-direction: column;
     overflow: auto;
     height: 12vh;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
 }
 
 tr, th, td {
@@ -147,6 +151,7 @@ th, td {
 }
 
 .tabla th {
+    color: #0E6251;
     border-bottom:  1px solid black;
     border-left: 1px solid black;
 }
@@ -156,9 +161,11 @@ th, td {
 }
 
 .moneda {
+    background-color: rgb(237, 237, 237);
     width: 100%;
     padding-left: 2%;
     border-bottom: 1px solid black;
+    border-top: 1px solid black;
     justify-content: start;
 }
 
