@@ -260,7 +260,11 @@ div.contenedor-footer-sup{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: flex-end !important;
+    justify-content: flex-end;
+}
+
+div.contenedor-footer-sup div {
+    width: 25%;
 }
 
 div.contenedor-footer-sup div ul a{
