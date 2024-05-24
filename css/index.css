@@ -151,3 +151,7 @@ main div.texto-abajo-main p a {
 main div.texto-abajo-main p a:hover {
     text-decoration: underline;
 }
+
+main div.texto-abajo-main p a:active {
+    background-color: rgb(62, 174, 151);
+}

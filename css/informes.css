@@ -55,7 +55,7 @@
 
 .selector-contenido {
     background-color: rgb(237, 237, 237);
-    border: 1px solid black;
+    border: 1px solid gray;
     width: 80%;
     padding: 2%;
 }
@@ -68,6 +68,7 @@
 
 .seleccionable select {
     width: 100%;
+    border-radius: 0;
 }
 
 .fa-filter {
@@ -86,6 +87,15 @@
 
 .compartir-info a {
     color: black;
+    text-decoration: none;
+}
+
+.compartir-info a:hover {
+    text-decoration: underline;
+}
+
+.compartir-info a:active {
+    color: #0E6251;
 }
 
 .fa-envelope-open-text {
