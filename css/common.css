@@ -19,7 +19,6 @@ html, body{
 
 /* HEADER - TITULO e ÍCONO*/
 header {
-    flex: 2;
     margin: 5px;
     display: flex;
     justify-content: center;
@@ -44,7 +43,7 @@ header {
 .cuerpo{
     display: flex;
     flex-direction: row;
-    flex: 8;
+    flex: 1;
     max-height: 25em;
 }
 
@@ -220,7 +219,6 @@ div.cuerpo-der main{
 /* FOOTER */
 footer{
     background-color: #ededed;
-    flex: 3;
     margin: 5px;
     display: flex;
     flex-direction: column;
