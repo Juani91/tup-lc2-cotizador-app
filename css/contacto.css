@@ -33,6 +33,7 @@ main{
     background-color: #ededed;
     padding-left: 2%; 
     padding-right: 2%;
+    border: 1px solid gray;
 }
 
 

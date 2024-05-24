@@ -9,6 +9,7 @@
 html, body{
     height: 100%;
     font-size: 16px;
+    font-weight: 500;
 }
 
 .contenedor-gral{
@@ -214,6 +215,21 @@ div.cuerpo-der main{
     margin: 5px;
     display: flex;
 }
+
+div.cuerpo-der div.miga-de-pan a {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+div.cuerpo-der div.miga-de-pan a:hover {
+    text-decoration: underline;
+}
+
+div.cuerpo-der div.miga-de-pan a:active {
+    color: #0E6251;
+}
+
 
 
 /* FOOTER */
