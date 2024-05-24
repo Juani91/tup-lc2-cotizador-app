@@ -54,7 +54,7 @@
 }
 
 .selector-contenido {
-    background-color: rgb(237, 237, 237);
+    background-color: #ededed;
     border: 1px solid gray;
     width: 80%;
     padding: 2%;
@@ -69,11 +69,13 @@
 .seleccionable select {
     width: 100%;
     border-radius: 0;
+    cursor: pointer;
 }
 
 .fa-filter {
     padding-left: 1vw;
-    color: rgb(14, 98, 81);
+    color: #0E6251;
+    cursor: pointer;
 }
 
 /* Compartir info */
@@ -101,7 +103,7 @@
 .fa-envelope-open-text {
     font-size: 2em;
     padding-right: 2%;
-    color:  rgb(14, 98, 81);
+    color: #0E6251;
 }
 
 /* Superior derecha */
@@ -112,7 +114,7 @@
 
 .grafico {
     background-color: rgb(237, 237, 237);
-    border: 1px solid black;
+    border: 1px solid gray;
     text-align: center;  /* sacar */
     margin: 2%;
     flex: 1;
@@ -132,7 +134,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-spacing: 0px;
     background-color: rgb(237, 237, 237);
     margin: 1%;
@@ -162,8 +164,8 @@ th, td {
 
 .tabla th {
     color: #0E6251;
-    border-bottom:  1px solid black;
-    border-left: 1px solid black;
+    border-bottom:  1px solid gray;
+    border-left: 1px solid gray;
 }
 
 .tabla thead th:first-child {
@@ -174,8 +176,8 @@ th, td {
     background-color: rgb(237, 237, 237);
     width: 100%;
     padding-left: 2%;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
     justify-content: start;
 }
 

@@ -24,9 +24,9 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(../img/neuroeconomia-portada.jpg);
-    background-size: cover;
-    background-position: center ;
+    background: url(../img/img-dolar-mundo.jpg);
+    background-size: auto;
+    background-position: center;
     color: white;
     font-weight: bold;
     font-size: 1.5em;
