@@ -118,8 +118,10 @@
     text-align: center;  /* sacar */
     margin: 2%;
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
 
 /* MITAD INFERIOR */
 .mitad-inferior {
