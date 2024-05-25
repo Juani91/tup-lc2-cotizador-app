@@ -20,7 +20,7 @@ main{
     justify-content: space-around;
     height: 100%;
     width:100%;
-    padding:2%;
+    /* padding:2%; */   /* TE SAQUÉ ESTO */
 }
 
 .general-izq{
@@ -35,9 +35,6 @@ main{
     padding-right: 2%;
     border: 1px solid gray;
 }
-
-
-
 
 td:last-child{
     display:flex;
@@ -62,6 +59,7 @@ td textarea{
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
+    margin: 2%; /* TE PUSE ESTO */
 }
 div.botones-abajo button{
     margin-left:3%;

@@ -20,11 +20,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
     text-align: center;
+    height: 10%;
 }
 
-.titulo tbody, tr { /*ver*/
+.titulo tbody, tr {
     width: 100%;
     display: flex;
 }
@@ -41,11 +41,10 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    flex: 8;
-    max-height: 45vh; /* ------------------------------- ver esto */
     border: 1px solid gray;
     margin: 0.5%;
     font-weight: 500;
+    max-height: 45vh;  /**/
 }
 
 thead{
@@ -58,7 +57,7 @@ thead{
 tbody{
     overflow: auto;
     border-top-left-radius: 0%;
-    border-top-right-radius: 0%;
+    border-top-right-radius: 0%;    
 }
 
 .fila{
