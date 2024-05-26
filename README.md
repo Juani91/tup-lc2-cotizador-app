@@ -8,6 +8,6 @@ Este proyecto es una página web que permite a los usuarios comparar distintas m
 
 ## Desarrolladores
 
-- **Facundo Solari** - [@facundosolari](https//github.com/facundosolari)
-- **Juan Ignacio Zucco** - [@Juani91](https//github.com/Juani91)
-- **Nicolás García** - [@nicolasgarcia1](https//github.com/nicolasgarcia1)
+- **Facundo Solari** - [@facundosolari](https://github.com/facundosolari)
+- **Juan Ignacio Zucco** - [@Juani91](https://github.com/Juani91)
+- **Nicolás García** - [@nicolasgarcia1](https://github.com/nicolasgarcia1)
