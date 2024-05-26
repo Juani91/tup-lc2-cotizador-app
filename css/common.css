@@ -32,6 +32,7 @@ header {
     font-size: 1.5em;
     gap: 10px;
     flex: 2; /* NO TOCAR */
+    min-height: 15vh;
 }
 
 .fa-coins{
@@ -237,9 +238,10 @@ footer{
     display: flex;
     flex-direction: column;
     flex: 3;   /* NO TOCAR */
+    min-height: 15vh;
 }
+
 div.contenedor-footer{
-    height: inherit;
 }
 div.listas-footer ul{
     list-style-type:"> ";
@@ -251,7 +253,6 @@ div.contenedor-footer-sup{
     flex-direction: row;
     flex-wrap: wrap;
     padding: 1em;
-    height: inherit;               /* OJO ACÁ*/
 }
 
 .contenedor-footer-sup div:last-of-type{

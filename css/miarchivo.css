@@ -9,9 +9,6 @@
 /* CONTENEDOR GENERAL DE LA PÁGINA "MI ARCHIVO"*/
 
 .contenedor-miarchivo{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
     width: 100%;
 }
 
@@ -19,7 +16,6 @@
 .titulo{
     display: flex;
     align-items: center;
-    justify-content: center;
     text-align: center;
     height: 10%;
 }
@@ -44,7 +40,7 @@
     border: 1px solid gray;
     margin: 0.5%;
     font-weight: 500;
-    max-height: 48vh;  /**/
+    max-height: 48vh;
 }
 
 thead{
@@ -62,7 +58,6 @@ tbody{
 
 .fila{
     text-align: center;
-    display: flex;
     padding: 3px 0px; /* sacar este padding si se quiere hacer el borde entre columnas */
 }
 

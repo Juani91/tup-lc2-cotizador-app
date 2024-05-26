@@ -115,7 +115,6 @@
 .grafico {
     background-color: rgb(237, 237, 237);
     border: 1px solid gray;
-    text-align: center;  /* sacar */
     margin: 2%;
     flex: 1;
     display: flex;
@@ -126,18 +125,13 @@
 /* MITAD INFERIOR */
 .mitad-inferior {
     display: flex;
-    flex: 1;
-    max-height: 40%;
 }
 
 
 /* tabla */
 .tabla {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     border: 1px solid gray;
-    border-spacing: 0px;
     background-color: rgb(237, 237, 237);
     margin: 1%;
 }
