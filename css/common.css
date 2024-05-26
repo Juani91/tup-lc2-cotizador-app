@@ -238,10 +238,18 @@ footer{
     flex-direction: column;
     min-height: 15vh;
 }
-
 div.contenedor-footer{
     background-color: #ededed;
 }
+
+div.contenedor-footer a:link{
+    color:rgb(89, 89, 89);
+}
+
+div.contenedor-footer a:visited{
+    color:rgb(89, 89, 89);
+}
+
 div.listas-footer ul{
     list-style-type:"> ";
     padding-left:13px;
@@ -265,11 +273,7 @@ div.contenedor-footer-sup div {
     width: 25%;
 }
 
-div.contenedor-footer-sup div ul a{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
+
 div.contenedor-footer-sup p.contenedor-a {
     display: flex;
     justify-content: center;

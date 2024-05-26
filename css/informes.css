@@ -109,17 +109,20 @@
 /* Superior derecha */
 .superior-derecha {
     display: flex;
-    
+    align-items: center;
 }
 
 .grafico {
-    background-color: rgb(237, 237, 237);
-    border: 1px solid gray;
-    margin: 2%;
     flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.grafico-imagen{
+    max-height: 26vh;
+    height: 100%;
+    width: 75%;
+    border-radius: 0;
 }
 
 /* MITAD INFERIOR */

@@ -68,7 +68,7 @@ main div.cotizaciones-container-index {
     flex-direction: column;
     flex-wrap: wrap;
     gap: 0.8em;
-    max-height: 15em;
+    max-height: 13em;
     border: 1px solid gray;
 }
 
