@@ -242,6 +242,7 @@ footer{
 }
 
 div.contenedor-footer{
+    background-color: #ededed;
 }
 div.listas-footer ul{
     list-style-type:"> ";
