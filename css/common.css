@@ -31,8 +31,7 @@ header {
     font-weight: bold;
     font-size: 1.5em;
     gap: 10px;
-    flex: 2; /* NO TOCAR */
-    min-height: 15vh;
+    min-height: 12vh;
 }
 
 .fa-coins{
@@ -44,7 +43,7 @@ header {
 .cuerpo{
     display: flex;
     flex-direction: row;
-    flex: 8;  /* NO TOCAR */
+    flex: 1;
 }
 
 
@@ -237,7 +236,6 @@ footer{
     margin: 5px;
     display: flex;
     flex-direction: column;
-    flex: 3;   /* NO TOCAR */
     min-height: 15vh;
 }
 
