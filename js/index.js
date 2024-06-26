@@ -19,7 +19,7 @@ const selectorMonedas = document.getElementById('select-moneda-index')
 
 selectorMonedas.addEventListener('change', () => {
     const moneda = selectorMonedas.value;
-    const contenedorDatos = document.querySelector('.cotizaciones-container-index')
+    const contenedorDatos = document.querySelector('.cotizaciones-container-index');
 
     if (moneda == 'dolares'){
         fetch(`https://dolarapi.com/v1/${moneda}`)
