@@ -62,11 +62,15 @@ selectorMonedas.addEventListener('change', () => {
             ventaElemento.appendChild(ventaTexto);
             ventaElemento.appendChild(ventaValor);
 
+            const estrella = document.createElement('i');
+            estrella.className = 'fa-solid fa-star';
+
             caracteresContainer.appendChild(nombreElemento);
             caracteresContainer.appendChild(compraElemento);
             caracteresContainer.appendChild(ventaElemento);
 
             valorContainer.appendChild(caracteresContainer);
+            valorContainer.appendChild(estrella);
             contenedorDatos.appendChild(valorContainer);
         });
 
@@ -82,6 +86,7 @@ selectorMonedas.addEventListener('change', () => {
         //            <h3>$909</h3>
         //        </div>
         //    </div>
+        //    <i class="fa-solid fa-star"></i>
         });
     } else {
         fetch(`https://dolarapi.com/v1/cotizaciones/${moneda}`)
@@ -124,11 +129,15 @@ selectorMonedas.addEventListener('change', () => {
             ventaElemento.appendChild(ventaTexto);
             ventaElemento.appendChild(ventaValor);
 
+            const estrella = document.createElement('i');
+            estrella.className = 'fa-solid fa-star';
+
             caracteresContainer.appendChild(nombreElemento);
             caracteresContainer.appendChild(compraElemento);
             caracteresContainer.appendChild(ventaElemento);
 
             valorContainer.appendChild(caracteresContainer);
+            valorContainer.appendChild(estrella);
             contenedorDatos.appendChild(valorContainer);
         });
     };
