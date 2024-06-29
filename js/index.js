@@ -1,4 +1,3 @@
-
 // fetch("https://dolarapi.com/v1/dolares")
 //     .then(response => response.json())
 //     .then(data => {
@@ -15,7 +14,11 @@
 //     .catch(error => {
 //         console.error(error);
 //     });
-const selectorMonedas = document.getElementById('select-moneda-index')
+
+
+// INICIO COMENTARIO DE LO DEL NICO  <------------------------------------------------------------
+/*
+const selectorMonedas = document.getElementById('select-moneda-index');
 
 selectorMonedas.addEventListener('change', () => {
     const moneda = selectorMonedas.value;
@@ -141,5 +144,96 @@ selectorMonedas.addEventListener('change', () => {
             contenedorDatos.appendChild(valorContainer);
         });
     };
-
 })
+*/
+// FIN COMENTARIO DE LO DEL NICO <------------------------------------------------------------
+
+
+const contenedorDatos = document.querySelector('.cotizaciones-container-index');
+
+const selectorMonedas = document.getElementById('select-moneda-index');
+const moneda = selectorMonedas.value;
+
+let arrayDolares = [];
+let arrayCotizaciones = [];
+let arrayGeneral = [];
+
+
+  fetch('https://dolarapi.com/v1/dolares')
+  .then(response => response.json())
+  .then(data => {
+    arrayDolares = data.map(d => ({
+      moneda: d.moneda,
+      casa: d.casa,
+      nombre: d.nombre,
+      compra: d.compra,
+      venta: d.venta,
+      fechaActualizacion: d.fechaActualizacion,
+    }));
+    console.log(arrayDolares);
+    arrayDolares.forEach(elemento => arrayGeneral.push(elemento));
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+  fetch('https://dolarapi.com/v1/cotizaciones')
+  .then(response => response.json())
+  .then(data => {
+    arrayCotizaciones = data.map(d => ({
+      moneda: d.moneda,
+      casa: d.casa,
+      nombre: d.nombre,
+      compra: d.compra,
+      venta: d.venta,
+      fechaActualizacion: d.fechaActualizacion,
+    }));
+    console.log(arrayCotizaciones);
+    arrayCotizaciones.forEach(elemento => arrayGeneral.push(elemento));
+    arrayGeneral.splice(7, 1);
+
+    contenedorDatos.innerHTML = '';
+
+    arrayGeneral.forEach(item => {
+        const valorContainer = document.createElement('div');
+        valorContainer.className = 'valor-container-index';
+    
+        const caracteresContainer = document.createElement('div');
+        caracteresContainer.className = 'caracteres-container-index';
+    
+        const nombreElemento = document.createElement('h3');
+        nombreElemento.textContent = item.nombre.toUpperCase();
+    
+        const compraElemento = document.createElement('div');
+        const compraTexto = document.createElement('p');
+        compraTexto.textContent = 'COMPRA';
+        const compraValor = document.createElement('h3');
+        compraValor.textContent = `$${item.compra}`;
+        compraElemento.appendChild(compraTexto);
+        compraElemento.appendChild(compraValor);
+    
+        const ventaElemento = document.createElement('div');
+        const ventaTexto = document.createElement('p');
+        ventaTexto.textContent = 'VENTA';
+        const ventaValor = document.createElement('h3');
+        ventaValor.textContent = `$${item.venta}`;
+        ventaElemento.appendChild(ventaTexto);
+        ventaElemento.appendChild(ventaValor);
+    
+        const estrella = document.createElement('i');
+        estrella.className = 'fa-solid fa-star';
+    
+        caracteresContainer.appendChild(nombreElemento);
+        caracteresContainer.appendChild(compraElemento);
+        caracteresContainer.appendChild(ventaElemento);
+    
+        valorContainer.appendChild(caracteresContainer);
+        valorContainer.appendChild(estrella);
+        contenedorDatos.appendChild(valorContainer);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+console.log(arrayGeneral);

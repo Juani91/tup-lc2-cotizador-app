@@ -67,15 +67,15 @@ main div.cotizaciones-container-index {
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 0.8em;
-    max-height: 13em;
+    gap: 1.2em;
+    height: 18em;
     border: 1px solid gray;
 }
 
 main div div.valor-container-index {
     display: flex;
     border-radius: 0;
-    height: 20%;
+    height: 2.5em;
     width: 49%;
     justify-content: center;
     align-items: center;
