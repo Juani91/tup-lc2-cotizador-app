@@ -149,37 +149,41 @@ selectorMonedas.addEventListener('change', () => {
 // FIN COMENTARIO DE LO DEL NICO <------------------------------------------------------------
 
 
+const botonFiltro = document.getElementById('boton-filtro');
+
 const contenedorDatos = document.querySelector('.cotizaciones-container-index');
 
-const selectorMonedas = document.getElementById('select-moneda-index');
-const moneda = selectorMonedas.value;
+let selectorMonedas = document.getElementById('select-moneda-index');
 
 let arrayDolares = [];
 let arrayCotizaciones = [];
 let arrayGeneral = [];
 
-
+function mostrarTodas() {
+  
+  let arrayGeneral = [];
+  
   fetch('https://dolarapi.com/v1/dolares')
-  .then(response => response.json())
-  .then(data => {
-    arrayDolares = data.map(d => ({
-      moneda: d.moneda,
-      casa: d.casa,
-      nombre: d.nombre,
-      compra: d.compra,
-      venta: d.venta,
-      fechaActualizacion: d.fechaActualizacion,
-    }));
-    console.log(arrayDolares);
-    arrayDolares.forEach(elemento => arrayGeneral.push(elemento));
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-
-  fetch('https://dolarapi.com/v1/cotizaciones')
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
+      arrayDolares = data.map(d => ({
+        moneda: d.moneda,
+        casa: d.casa,
+        nombre: d.nombre,
+        compra: d.compra,
+        venta: d.venta,
+        fechaActualizacion: d.fechaActualizacion,
+      }));
+      console.log(arrayDolares);
+      arrayDolares.forEach(elemento => arrayGeneral.push(elemento));
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  
+    fetch('https://dolarapi.com/v1/cotizaciones')
+    .then(response => response.json())
+    .then(data => {
     arrayCotizaciones = data.map(d => ({
       moneda: d.moneda,
       casa: d.casa,
@@ -235,5 +239,82 @@ let arrayGeneral = [];
   .catch(error => {
     console.error('Error fetching data:', error);
   });
-
+  console.log(arrayGeneral);
+}
 console.log(arrayGeneral);
+
+function mostrarIndividuales(moneda) {
+
+        fetch(`https://dolarapi.com/v1/${moneda}`)
+        .then(response => response.json())
+        .then(data => {
+        const objeto = {
+            moneda: data.moneda,
+            casa: data.casa,
+            nombre: data.nombre,
+            compra: data.compra,
+            venta: data.venta,
+            fechaActualizacion: data.fechaActualizacion,
+        };
+        console.log(objeto);
+
+        contenedorDatos.innerHTML = ''; // limpio pantalla
+
+        const valorContainer = document.createElement('div');
+        valorContainer.className = 'valor-container-index';
+
+        const caracteresContainer = document.createElement('div');
+        caracteresContainer.className = 'caracteres-container-index';
+
+        const nombreElemento = document.createElement('h3');
+        nombreElemento.textContent = objeto.nombre.toUpperCase();
+
+        const compraElemento = document.createElement('div');
+        const compraTexto = document.createElement('p');
+        compraTexto.textContent = 'COMPRA';
+        const compraValor = document.createElement('h3');
+        compraValor.textContent = `$${objeto.compra}`;
+        compraElemento.appendChild(compraTexto);
+        compraElemento.appendChild(compraValor);
+
+        const ventaElemento = document.createElement('div');
+        const ventaTexto = document.createElement('p');
+        ventaTexto.textContent = 'VENTA';
+        const ventaValor = document.createElement('h3');
+        ventaValor.textContent = `$${objeto.venta}`;
+        ventaElemento.appendChild(ventaTexto);
+        ventaElemento.appendChild(ventaValor);
+
+        const estrella = document.createElement('i');
+        estrella.className = 'fa-solid fa-star';
+
+        caracteresContainer.appendChild(nombreElemento);
+        caracteresContainer.appendChild(compraElemento);
+        caracteresContainer.appendChild(ventaElemento);
+
+        valorContainer.appendChild(caracteresContainer);
+        valorContainer.appendChild(estrella);
+        contenedorDatos.appendChild(valorContainer);
+      });
+
+}
+
+mostrarTodas();
+
+botonFiltro.addEventListener("click", () => {
+  let moneda = selectorMonedas.value;
+  contenedorDatos.innerHTML = '';
+
+  if(moneda == 'TODAS'){
+    mostrarTodas();
+  }else{
+    mostrarIndividuales(moneda);
+  }
+})
+
+const textoFecha = document.getElementsByClassName('texto-datos-actualizados');
+
+function cambiarFechayHora(){
+
+}
+
