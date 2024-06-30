@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="js/Contacto.js" defer></script>
     <script src="js/common.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -70,19 +71,19 @@
                     <div class="general">
                         <div class="general-izq">
                             <h4>DATOS DE CONTACTO</h4>
-                            <table>
+                            <table id ="formulario">
                                 <tbody>
                                     <tr>
-                                        <td><label for="Nombre">Nombre:</label></td>
-                                        <td><input type="text" name="Nombre" placeholder="" id="nombre"required></td>
+                                        <td><label for="nombre">Nombre:</label></td>
+                                        <td><input type="text" name="nombre" placeholder="" id="nombre" required></td>
                                     </tr>
                                     <tr>
-                                        <td><label for="Email">E-mail: </label></td>
-                                        <td><input type="email" name="e-mail" placeholder="" id="email" required></td>
+                                        <td><label for="email">E-mail: </label></td>
+                                        <td><input type="email" name="email" id="email" placeholder = "" required></td>
                                     </tr>
                                     <tr>
-                                        <td><label for="Mensaje" class="Mensaje" >Mensaje:</label></td>
-                                        <td><textarea type="text" name="Mensaje" placeholder="" id="mensaje"cols="10" row="10"
+                                        <td><label for="mensaje" class="mensaje" >Mensaje:</label></td>
+                                        <td><textarea type="text" name="mensaje" placeholder="" id="mensaje"cols="10" row="10"
                                                 required></textarea></td>
                                     </tr>
                                 </tbody>
@@ -113,8 +114,8 @@
                         </div>
                     </div>
                     <div class="botones-abajo">
-                        <button class="boton-L">Limpiar</button>
-                        <button class="boton-E">Enviar</button>
+                        <button class="boton-L" id="limpiar">Limpiar</button>
+                        <button class="boton-E" id="enviar">Enviar</button>
                     </div>
                 </main>
             </div>

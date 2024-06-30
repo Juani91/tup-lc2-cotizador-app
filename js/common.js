@@ -1,2 +1,2 @@
-
+enviarMail = document.gete
 
