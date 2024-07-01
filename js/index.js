@@ -160,9 +160,9 @@ let arrayCotizaciones = [];
 let arrayGeneral = [];
 
 function mostrarTodas() {
-  
+
   let arrayGeneral = [];
-  
+
   fetch('https://dolarapi.com/v1/dolares')
     .then(response => response.json())
     .then(data => {
@@ -180,34 +180,34 @@ function mostrarTodas() {
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-  
-    fetch('https://dolarapi.com/v1/cotizaciones')
+
+  fetch('https://dolarapi.com/v1/cotizaciones')
     .then(response => response.json())
     .then(data => {
-    arrayCotizaciones = data.map(d => ({
-      moneda: d.moneda,
-      casa: d.casa,
-      nombre: d.nombre,
-      compra: d.compra,
-      venta: d.venta,
-      fechaActualizacion: d.fechaActualizacion,
-    }));
-    console.log(arrayCotizaciones);
-    arrayCotizaciones.forEach(elemento => arrayGeneral.push(elemento));
-    arrayGeneral.splice(7, 1);
+      arrayCotizaciones = data.map(d => ({
+        moneda: d.moneda,
+        casa: d.casa,
+        nombre: d.nombre,
+        compra: d.compra,
+        venta: d.venta,
+        fechaActualizacion: d.fechaActualizacion,
+      }));
+      console.log(arrayCotizaciones);
+      arrayCotizaciones.forEach(elemento => arrayGeneral.push(elemento));
+      arrayGeneral.splice(7, 1);
 
-    contenedorDatos.innerHTML = '';
+      contenedorDatos.innerHTML = '';
 
-    arrayGeneral.forEach(item => {
+      arrayGeneral.forEach(item => {
         const valorContainer = document.createElement('div');
         valorContainer.className = 'valor-container-index';
-    
+
         const caracteresContainer = document.createElement('div');
         caracteresContainer.className = 'caracteres-container-index';
-    
+
         const nombreElemento = document.createElement('h3');
         nombreElemento.textContent = item.nombre.toUpperCase();
-    
+
         const compraElemento = document.createElement('div');
         const compraTexto = document.createElement('p');
         compraTexto.textContent = 'COMPRA';
@@ -215,73 +215,12 @@ function mostrarTodas() {
         compraValor.textContent = `$${item.compra}`;
         compraElemento.appendChild(compraTexto);
         compraElemento.appendChild(compraValor);
-    
+
         const ventaElemento = document.createElement('div');
         const ventaTexto = document.createElement('p');
         ventaTexto.textContent = 'VENTA';
         const ventaValor = document.createElement('h3');
         ventaValor.textContent = `$${item.venta}`;
-        ventaElemento.appendChild(ventaTexto);
-        ventaElemento.appendChild(ventaValor);
-    
-        const estrella = document.createElement('i');
-        estrella.className = 'fa-solid fa-star';
-    
-        caracteresContainer.appendChild(nombreElemento);
-        caracteresContainer.appendChild(compraElemento);
-        caracteresContainer.appendChild(ventaElemento);
-    
-        valorContainer.appendChild(caracteresContainer);
-        valorContainer.appendChild(estrella);
-        contenedorDatos.appendChild(valorContainer);
-    });
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-  console.log(arrayGeneral);
-}
-console.log(arrayGeneral);
-
-function mostrarIndividuales(moneda) {
-
-        fetch(`https://dolarapi.com/v1/${moneda}`)
-        .then(response => response.json())
-        .then(data => {
-        const objeto = {
-            moneda: data.moneda,
-            casa: data.casa,
-            nombre: data.nombre,
-            compra: data.compra,
-            venta: data.venta,
-            fechaActualizacion: data.fechaActualizacion,
-        };
-        console.log(objeto);
-
-        contenedorDatos.innerHTML = ''; // limpio pantalla
-
-        const valorContainer = document.createElement('div');
-        valorContainer.className = 'valor-container-index';
-
-        const caracteresContainer = document.createElement('div');
-        caracteresContainer.className = 'caracteres-container-index';
-
-        const nombreElemento = document.createElement('h3');
-        nombreElemento.textContent = objeto.nombre.toUpperCase();
-
-        const compraElemento = document.createElement('div');
-        const compraTexto = document.createElement('p');
-        compraTexto.textContent = 'COMPRA';
-        const compraValor = document.createElement('h3');
-        compraValor.textContent = `$${objeto.compra}`;
-        compraElemento.appendChild(compraTexto);
-        compraElemento.appendChild(compraValor);
-
-        const ventaElemento = document.createElement('div');
-        const ventaTexto = document.createElement('p');
-        ventaTexto.textContent = 'VENTA';
-        const ventaValor = document.createElement('h3');
-        ventaValor.textContent = `$${objeto.venta}`;
         ventaElemento.appendChild(ventaTexto);
         ventaElemento.appendChild(ventaValor);
 
@@ -296,7 +235,67 @@ function mostrarIndividuales(moneda) {
         valorContainer.appendChild(estrella);
         contenedorDatos.appendChild(valorContainer);
       });
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  console.log(arrayGeneral);
+}
+console.log(arrayGeneral);
 
+function mostrarIndividuales(moneda) {
+
+  fetch(`https://dolarapi.com/v1/${moneda}`)
+    .then(response => response.json())
+    .then(data => {
+      const objeto = {
+        moneda: data.moneda,
+        casa: data.casa,
+        nombre: data.nombre,
+        compra: data.compra,
+        venta: data.venta,
+        fechaActualizacion: data.fechaActualizacion,
+      };
+      console.log(objeto);
+
+      contenedorDatos.innerHTML = ''; // limpio pantalla
+
+      const valorContainer = document.createElement('div');
+      valorContainer.className = 'valor-container-index';
+
+      const caracteresContainer = document.createElement('div');
+      caracteresContainer.className = 'caracteres-container-index';
+
+      const nombreElemento = document.createElement('h3');
+      nombreElemento.textContent = objeto.nombre.toUpperCase();
+
+      const compraElemento = document.createElement('div');
+      const compraTexto = document.createElement('p');
+      compraTexto.textContent = 'COMPRA';
+      const compraValor = document.createElement('h3');
+      compraValor.textContent = `$${objeto.compra}`;
+      compraElemento.appendChild(compraTexto);
+      compraElemento.appendChild(compraValor);
+
+      const ventaElemento = document.createElement('div');
+      const ventaTexto = document.createElement('p');
+      ventaTexto.textContent = 'VENTA';
+      const ventaValor = document.createElement('h3');
+      ventaValor.textContent = `$${objeto.venta}`;
+      ventaElemento.appendChild(ventaTexto);
+      ventaElemento.appendChild(ventaValor);
+
+      const estrella = document.createElement('i');
+      estrella.className = 'fa-solid fa-star';
+
+      caracteresContainer.appendChild(nombreElemento);
+      caracteresContainer.appendChild(compraElemento);
+      caracteresContainer.appendChild(ventaElemento);
+
+      valorContainer.appendChild(caracteresContainer);
+      valorContainer.appendChild(estrella);
+      contenedorDatos.appendChild(valorContainer);
+    });
 }
 
 mostrarTodas();
@@ -305,16 +304,37 @@ botonFiltro.addEventListener("click", () => {
   let moneda = selectorMonedas.value;
   contenedorDatos.innerHTML = '';
 
-  if(moneda == 'TODAS'){
+  if (moneda == 'TODAS') {
     mostrarTodas();
-  }else{
+  } else {
     mostrarIndividuales(moneda);
   }
 })
 
-const textoFecha = document.getElementsByClassName('texto-datos-actualizados');
+const textoFecha = document.querySelector('.texto-datos-actualizados');
 
-function cambiarFechayHora(){
 
+
+function cambiarFechayHora() {
+  setInterval(() => {
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('es-AR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+    textoFecha.innerHTML = `Datos actualizados al ${formattedDate}`;
+  }, 1000);
 }
+cambiarFechayHora();
 
+
+//setInterval(cambiarFechayHora, 5000);
+
+// function empezarIntervalo() {
+//   intervalo = setInterval(function() {
+//       console.log("Mensaje cada 1 segundo..");
+//   }, 1000)

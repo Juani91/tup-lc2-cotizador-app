@@ -89,7 +89,7 @@ main div div div.caracteres-container-index {
     border-radius: 0;
     flex: 1;
     height: 70%;
-    padding: 0.4em;
+    padding: 0.2em;
     gap: 1em;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)
 }
