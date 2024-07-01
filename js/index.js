@@ -151,6 +151,7 @@ selectorMonedas.addEventListener('change', () => {
 
 const botonFiltro = document.getElementById('boton-filtro');
 
+
 const contenedorDatos = document.querySelector('.cotizaciones-container-index');
 
 let selectorMonedas = document.getElementById('select-moneda-index');
@@ -162,6 +163,7 @@ let arrayGeneral = [];
 function mostrarTodas() {
 
   let arrayGeneral = [];
+  let listaStringify = [];
 
   fetch('https://dolarapi.com/v1/dolares')
     .then(response => response.json())
@@ -226,6 +228,16 @@ function mostrarTodas() {
 
         const estrella = document.createElement('i');
         estrella.className = 'fa-solid fa-star';
+        estrella.addEventListener("click", () => {
+          //localStorage.setItem(nombre, `${item.nombre}`);
+          let monedaGuardada = {
+            nombre: item.nombre,
+            valorCompra: item.compra,
+          }
+          listaStringify.push(monedaGuardada) // iterar la lista y validar que no se repita el ingreso
+          localStorage.setItem("Favoritos", JSON.stringify([listaStringify]));
+        })
+
 
         caracteresContainer.appendChild(nombreElemento);
         caracteresContainer.appendChild(compraElemento);
@@ -287,6 +299,10 @@ function mostrarIndividuales(moneda) {
 
       const estrella = document.createElement('i');
       estrella.className = 'fa-solid fa-star';
+      estrella.addEventListener("click", () => {
+        // localStorage.setItem('Moneda', objeto);
+        // console.log("Moneda: ", objeto);
+      })
 
       caracteresContainer.appendChild(nombreElemento);
       caracteresContainer.appendChild(compraElemento);
@@ -297,6 +313,12 @@ function mostrarIndividuales(moneda) {
       contenedorDatos.appendChild(valorContainer);
     });
 }
+
+
+
+
+  
+
 
 mostrarTodas();
 
