@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('¡Error al enviar el correo!', error);
         alert('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.');
       });
+      email = document.getElementById('email').value= " ";
+      nombre = document.getElementById('nombre').value= " ";
+      mensaje = document.getElementById('mensaje').value= " ";
   });
 
   document.getElementById('limpiar').addEventListener('click', function (event) {

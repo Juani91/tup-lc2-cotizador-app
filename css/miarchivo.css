@@ -88,3 +88,7 @@ th {
     color: #C55A11;
     font-size: 20px; 
 }
+
+.fa-eraser:hover{
+    cursor: pointer;
+}

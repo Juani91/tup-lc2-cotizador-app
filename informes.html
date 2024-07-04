@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="js/common.js" defer></script>
     <script src="js/informes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
 </head>
 
 <body>
@@ -72,13 +73,13 @@
                                         </div>
                                         <div class="seleccionable">
                                             <div>
-                                                <select>
+                                                <select id="monedaSelect">
                                                     <option value="TODAS" selected>TODAS</option>
                                                     <option value="Dólar Oficial">Dólar Oficial</option>
                                                     <option value="Dólar Blue">Dólar Blue</option>
                                                     <option value="Dólar Bolsa (MEP)">Dólar Bolsa (MEP)</option>
                                                     <option value="Dólar Contado con Liqui (CCL)">Dólar Contado con Liqui (CCL)</option>
-                                                    <option value=Dólar>Dólar Tarjeta</option>
+                                                    <option value="Dólar Tarjeta">Dólar Tarjeta</option>
                                                     <option value="Dólar Mayorista">Dólar Mayorista</option>
                                                     <option value="Dólar Cripto">Dólar Cripto</option>
                                                     <option value="Euro">Euro</option>
@@ -95,14 +96,14 @@
                                 </div>
                                 <div class="compartir-info">
                                     <i class="fa-solid fa-envelope-open-text"></i>
-                                    <a href="#">Compartir información</a>
+                                    <a href="#" id="compartirEmail">Compartir información</a>
                                 </div>
                             </div>
                             <div class="superior-derecha">
                                 <div class="grafico">
-                                    <img class="grafico-imagen" src="img/grafico.png" alt="Gráfico de cotizaciones">
+                                    <canvas id="miGrafica"></canvas>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="mitad-inferior">
                             <table class="tabla">
@@ -115,52 +116,8 @@
                                         <th>VARIACIÓN</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="5" class="moneda">Dólar Blue</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>15/04/24</td>
-                                        <td>$1000</td>
-                                        <td>$1150</td>
-                                        <td><i class="fa-solid fa-circle-arrow-up"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>14/04/24</td>
-                                        <td>$995</td>
-                                        <td>$1015</td>
-                                        <td><i class="fa-solid fa-circle-arrow-down"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>13/04/24</td>
-                                        <td>$1000</td>
-                                        <td>$1150</td>
-                                        <td><i class="fa-solid fa-circle-arrow-up"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>12/04/24</td>
-                                        <td>$995</td>
-                                        <td>$1015</td>
-                                        <td><i class="fa-solid fa-circle-arrow-down"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>13/04/24</td>
-                                        <td>$1000</td>
-                                        <td>$1150</td>
-                                        <td><i class="fa-solid fa-circle-arrow-up"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>12/04/24</td>
-                                        <td>$995</td>
-                                        <td>$1015</td>
-                                        <td><i class="fa-solid fa-circle-arrow-down"></i></td>
-                                    </tr>
+                                <tbody id="tablaInforme">
+                                    <!-- Las filas se llenarán dinámicamente con JavaScript -->
                                 </tbody>
                             </table>
                         </div>
@@ -196,7 +153,7 @@
                         <p>ZEBALLOS 1341 - S2000BQA -</p>
                         <p>ROSARIO</p>
                         <p> 0341 - 4481871</p>
-                        <p class="contenedor-a"><a href="#">¡Escribanos!</a></p>
+                        <p class="contenedor-a"><a href="Contacto.html">¡Escribanos!</a></p>
 
                     </div>
 
