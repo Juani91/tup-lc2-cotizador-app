@@ -1,0 +1,2 @@
+localStorage.getItem("Favoritos");
+

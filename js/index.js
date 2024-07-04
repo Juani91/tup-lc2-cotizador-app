@@ -158,10 +158,20 @@ let selectorMonedas = document.getElementById('select-moneda-index');
 
 let arrayDolares = [];
 let arrayCotizaciones = [];
-let arrayGeneral = [];
 let listaStringify = [];
 
+function compararMonedas(moneda1, moneda2) {
+  return moneda1.moneda === moneda2.moneda &&
+         moneda1.casa === moneda2.casa &&
+         moneda1.nombre === moneda2.nombre &&
+         moneda1.compra === moneda2.compra &&
+         moneda1.venta === moneda2.venta &&
+         moneda1.fechaActualizacion === moneda2.fechaActualizacion;
+}
+
 function mostrarTodas() {
+
+  let arrayGeneral = [];
 
   fetch('https://dolarapi.com/v1/dolares')
     .then(response => response.json())
@@ -224,7 +234,9 @@ function mostrarTodas() {
 
         const estrella = document.createElement('i');
         estrella.className = 'fa-solid fa-star';
+
         estrella.addEventListener("click", () => {
+
           let monedaGuardada = {
             moneda: item.moneda,
             casa: item.casa,
@@ -233,10 +245,25 @@ function mostrarTodas() {
             venta: item.venta,
             fechaActualizacion: item.fechaActualizacion,
           }
-          listaStringify.push(monedaGuardada)
-          localStorage.setItem("Favoritos", JSON.stringify([listaStringify]));
+          
+          // Obtener la lista de monedas desde localStorage
+          let listaStringify = JSON.parse(localStorage.getItem("Favoritos")) || [];
+          let encontrada = false;
+        
+          // Verificar si la moneda ya está en la lista
+          for (let i = 0; i < listaStringify.length; i++) {
+            if (compararMonedas(listaStringify[i], monedaGuardada)) {
+              encontrada = true;
+            }
+          }
+        
+          if (encontrada) {
+            alert("La moneda ya se encuentra almacenada");
+          } else {
+            listaStringify.push(monedaGuardada);
+            localStorage.setItem("Favoritos", JSON.stringify(listaStringify));
+          }
         });
-
 
         caracteresContainer.appendChild(nombreElemento);
         caracteresContainer.appendChild(compraElemento);
@@ -291,8 +318,22 @@ function mostrarDolares() {
         venta: item.venta,
         fechaActualizacion: item.fechaActualizacion,
       }
-      listaStringify.push(monedaGuardada) // iterar la lista y validar que no se repita el ingreso
-      localStorage.setItem("Favoritos", JSON.stringify([listaStringify]));
+      let listaStringify = JSON.parse(localStorage.getItem("Favoritos")) || [];
+      let encontrada = false;
+    
+      // Verificar si la moneda ya está en la lista
+      for (let i = 0; i < listaStringify.length; i++) {
+        if (compararMonedas(listaStringify[i], monedaGuardada)) {
+          encontrada = true;
+        }
+      }
+    
+      if (encontrada) {
+        alert("La moneda ya se encuentra almacenada");
+      } else {
+        listaStringify.push(monedaGuardada);
+        localStorage.setItem("Favoritos", JSON.stringify(listaStringify));
+      }
     });
 
 
@@ -349,16 +390,30 @@ function mostrarIndividuales(moneda) {
       const estrella = document.createElement('i');
       estrella.className = 'fa-solid fa-star';
       estrella.addEventListener("click", () => {
-        let monedaGuardada = {
-          moneda: objeto.moneda,
-          casa: objeto.casa,
-          nombre: objeto.nombre,
-          compra: objeto.compra,
-          venta: objeto.venta,
-          fechaActualizacion: objeto.fechaActualizacion,
-        }  
-        listaStringify.push(monedaGuardada); // iterar la lista y validar que no se repita el ingreso
-        localStorage.setItem("Favoritos", JSON.stringify([listaStringify]));
+      let monedaGuardada = {
+        moneda: objeto.moneda,
+        casa: objeto.casa,
+        nombre: objeto.nombre,
+        compra: objeto.compra,
+        venta: objeto.venta,
+        fechaActualizacion: objeto.fechaActualizacion,
+      }  
+      let listaStringify = JSON.parse(localStorage.getItem("Favoritos")) || [];
+      let encontrada = false;
+    
+      // Verificar si la moneda ya está en la lista
+      for (let i = 0; i < listaStringify.length; i++) {
+        if (compararMonedas(listaStringify[i], monedaGuardada)) {
+          encontrada = true;
+        }
+      }
+    
+      if (encontrada) {
+        alert("La moneda ya se encuentra almacenada");
+      } else {
+        listaStringify.push(monedaGuardada);
+        localStorage.setItem("Favoritos", JSON.stringify(listaStringify));
+      }
       });
 
       caracteresContainer.appendChild(nombreElemento);
@@ -371,7 +426,7 @@ function mostrarIndividuales(moneda) {
     });
 };
 
-mostrarTodas();
+
 
 botonFiltro.addEventListener("click", () => {
   let moneda = selectorMonedas.value;
@@ -389,9 +444,19 @@ botonFiltro.addEventListener("click", () => {
 
 const textoFecha = document.querySelector('.texto-datos-actualizados');
 
-
-
 function cambiarFechayHora() {
+  // Mostrar la fecha actual al inicio
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('es-AR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  textoFecha.innerHTML = `Datos actualizados al ${formattedDate}`;
+
+  // Actualizar la fecha cada 5 minutos
   setInterval(() => {
     const now = new Date();
     const formattedDate = now.toLocaleDateString('es-AR', {
@@ -400,17 +465,15 @@ function cambiarFechayHora() {
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit',
     });
     textoFecha.innerHTML = `Datos actualizados al ${formattedDate}`;
-  }, 1000);
+  }, 30000); // 300000 ms = 5 minutos
 }
+
 cambiarFechayHora();
 
+// Actualizar cotizaciones al ingresar
+mostrarTodas();
 
-//setInterval(cambiarFechayHora, 5000);
-
-// function empezarIntervalo() {
-//   intervalo = setInterval(function() {
-//       console.log("Mensaje cada 1 segundo..");
-//   }, 1000)
+// Actualizar cotizaciones cada 5 minutos
+setInterval(mostrarTodas, 30000);

@@ -124,6 +124,11 @@ main div div.valor-container-index i:hover {
     cursor: pointer;
 }
 
+main div div.valor-container-index i.favorito {
+    color: #0E6251;
+    font-size: 1.5em;
+}
+
 main div.texto-abajo-main {
     display: flex;
     flex-direction: row;
