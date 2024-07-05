@@ -1,6 +1,5 @@
 enviarMail = document.gete
 
-// Array de opiniones (puedes agregar más si quieres)
 const opiniones = [
     {
         imagen: "img/muchachon.jpg",
@@ -14,7 +13,7 @@ const opiniones = [
     },
     {
         imagen: "img/chico.jpg",
-        nombre: "Miguel",
+        nombre: "Miguel Rodriguez",
         comentario: "Muy útil! Me ayuda en mi día a día financiero."
     }
 ];
@@ -33,11 +32,9 @@ function cambiarOpinion() {
                 <p>${opiniones[index].comentario}</p>
             </div>
     `;
-    index = (index + 1) % opiniones.length; // Avanza al siguiente índice circularmente
+    index = (index + 1) % opiniones.length;
 }
 
-// Cambiar la opinión inicial
-cambiarOpinion();
 
-// Cambiar la opinión cada 5 segundos
+cambiarOpinion();
 setInterval(cambiarOpinion, 4000);
