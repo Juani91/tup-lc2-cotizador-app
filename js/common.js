@@ -4,18 +4,18 @@ enviarMail = document.gete
 const opiniones = [
     {
         imagen: "img/muchachon.jpg",
-        nombre: "Ramon Alvarez",
-        comentario: "La mejor página de laboratorio."
+        nombre: "Ramón Alvarez",
+        comentario: "La información se ve confiable, muchas gracias!"
     },
     {
-        imagen: "img/muchachon.jpg",
-        nombre: "Ramon Alvarez",
-        comentario: "Muy interesante"
+        imagen: "img/chica.webp",
+        nombre: "Kary",
+        comentario: "Como aumenta el dólar!"
     },
     {
-        imagen: "img/muchachon.jpg",
-        nombre: "Ramon Alvarez",
-        comentario: "Muy útil! Me ayuda en mi día a día financiero"
+        imagen: "img/chico.jpg",
+        nombre: "Miguel",
+        comentario: "Muy útil! Me ayuda en mi día a día financiero."
     }
 ];
 

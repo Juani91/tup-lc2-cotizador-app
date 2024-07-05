@@ -25,9 +25,13 @@
     display: flex;
 }
 
-.icono{
+.icono-impresora{
     font-size: 150%;
     color: #0E6251;
+}
+
+.icono-impresora:hover{
+    cursor: pointer;
 }
 
 /*TABLA DE COTIZACIONES*/
