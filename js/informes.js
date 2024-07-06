@@ -2,8 +2,8 @@
 const Favoritos = JSON.parse(localStorage.getItem('Favoritos')) || [];
 const tablaInforme = document.getElementById('tablaInforme');
 
+// Función para generar la tabla con los datos de Favoritos
 function generarTabla() {
-
     tablaInforme.innerHTML = '';
 
     // Agrupar por nombre de moneda
@@ -16,13 +16,12 @@ function generarTabla() {
     }, {});
 
     Object.keys(listaFavoritos).forEach(nombre => {
-        
         const favoritos = listaFavoritos[nombre];
 
         // Ordenar las fechas de menor a mayor
         favoritos.sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
 
-        // Primera fila con el nombre
+        // Primera fila con el nombre del favorito
         const fila = document.createElement('tr');
         const filaNombre = document.createElement('td');
         filaNombre.colSpan = 5;
@@ -32,7 +31,7 @@ function generarTabla() {
         tablaInforme.appendChild(fila);
 
         // Variable para almacenar el precio de venta del día anterior
-        let ventaPrevia = null;
+        let precioVentaPrevio = null;
 
         // Array temporal para almacenar las filas de detalle
         const filasDetalles = [];
@@ -41,33 +40,31 @@ function generarTabla() {
         favoritos.forEach(favorito => {
             const filaDetalle = document.createElement('tr');
 
-            const filaVacia = document.createElement('td');
+            const celdaVacia = document.createElement('td');
 
-            const columnaFecha = document.createElement('td');
-            columnaFecha.textContent = formatearFecha(favorito.fechaActualizacion);
+            const celdaFecha = document.createElement('td');
+            celdaFecha.textContent = formatearFecha(favorito.fechaActualizacion);
 
-            const columnaCompra = document.createElement('td');
-            columnaCompra.textContent = `$${favorito.compra}`;
+            const celdaCompra = document.createElement('td');
+            celdaCompra.textContent = `$${favorito.compra}`;
 
-            const columnaVenta = document.createElement('td');
-            columnaVenta.textContent = `$${favorito.venta}`;
+            const celdaVenta = document.createElement('td');
+            celdaVenta.textContent = `$${favorito.venta}`;
 
             const iconoFlecha = document.createElement('td');
-
-            if (ventaPrevia !== null) {
-                if (favorito.venta > ventaPrevia) {
-                    iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arfila-up"></i>';
-                } else if (favorito.venta < ventaPrevia) {
-                    iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arfila-down"></i>';
+            if (precioVentaPrevio !== null) {
+                if (favorito.venta > precioVentaPrevio) {
+                    iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-up"></i>';
+                } else if (favorito.venta < precioVentaPrevio) {
+                    iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-down"></i>';
                 }
             }
+            precioVentaPrevio = favorito.venta;
 
-            ventaPrevia = favorito.venta;
-
-            filaDetalle.appendChild(filaVacia);
-            filaDetalle.appendChild(columnaFecha);
-            filaDetalle.appendChild(columnaCompra);
-            filaDetalle.appendChild(columnaVenta);
+            filaDetalle.appendChild(celdaVacia);
+            filaDetalle.appendChild(celdaFecha);
+            filaDetalle.appendChild(celdaCompra);
+            filaDetalle.appendChild(celdaVenta);
             filaDetalle.appendChild(iconoFlecha);
 
             // Añadir la fila de detalle al array temporal
@@ -90,4 +87,5 @@ function formatearFecha(dateString) {
     return `${day}/${month}/${year}`;
 }
 
+// Llamar a la función para generar la tabla al cargar la página
 generarTabla();
