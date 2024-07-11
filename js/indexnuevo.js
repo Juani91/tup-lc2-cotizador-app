@@ -100,3 +100,65 @@ function fetchDatos() {
 fetchDatos();
 cambiarFechayHora();
 
+
+function cargarIndex(){
+
+const contenedorGeneral = document.getElementById('contenedor-general');
+
+var listaMonedasIndex = localStorage.getItem('listaMonedas');
+var listaMonedasIndexJSON = JSON.parse(listaMonedasIndex);
+
+
+contenedorGeneral.innerHTML = '';
+listaMonedasIndexJSON.forEach(elementoLista => {
+    const valorContainerIndex = document.createElement('div');
+    valorContainerIndex.className = 'valor-container-index';
+
+    const caracteresContainerIndex = document.createElement('div');
+    caracteresContainerIndex.className = 'caracteres-container-index';
+
+    const nombreContainer = document.createElement('div');
+    const nombreContainerText = document.createElement('h3');
+    nombreContainerText.textContent = elementoLista.nombre.toUpperCase();
+
+    let compraContainter = document.createElement('div');
+    const tituloCompraContainer = document.createElement('p');
+    tituloCompraContainer.textContent = "COMPRA"
+    let valorCompraContainer = document.createElement('h3');
+    valorCompraContainer.textContent = `$${elementoLista.compra}`;
+
+    let ventaContainer = document.createElement('div');
+    const tituloVentaContainer = document.createElement('p');
+    tituloVentaContainer.textContent = "VENTA"
+    let valorVentaContainer = document.createElement('h3');
+    valorVentaContainer.textContent = `$${elementoLista.venta}`;
+
+    const iconoContainer =document.createElement ('div');
+    const icono = document.createElement('i');
+    icono.classname= 'favorito' ;
+    iconoContainer.appendChild(icono)
+
+
+    nombreContainer.appendChild(nombreContainerText)
+
+    valorContainerIndex.appendChild(caracteresContainerIndex)
+
+
+    caracteresContainerIndex.appendChild(nombreContainer)
+    caracteresContainerIndex.appendChild(compraContainter)
+    caracteresContainerIndex.appendChild(ventaContainer)
+    caracteresContainerIndex.appendChild(iconoContainer)
+
+    compraContainter.appendChild(tituloCompraContainer)
+    compraContainter.appendChild(valorCompraContainer)
+
+    ventaContainer.appendChild(tituloVentaContainer)
+    ventaContainer.appendChild(valorVentaContainer)
+
+
+    
+    contenedorGeneral.appendChild(valorContainerIndex)
+})
+    
+};
+cargarIndex();
