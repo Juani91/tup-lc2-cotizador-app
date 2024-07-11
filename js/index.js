@@ -46,8 +46,8 @@ function cambiarFechayHora() {
         textoFecha.innerHTML = `Datos actualizados al ${formattedDate}`;
 
         localStorage.setItem('listaMonedas', '');
-        contenedorDatos.innerHTML = '';
         fetchDatos();
+        cargarIndex();
     }, 300000);
 
 }
