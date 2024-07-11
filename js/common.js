@@ -36,5 +36,18 @@ function cambiarOpinion() {
 }
 
 
+function Alerta(msj, tipo) {
+    const contenedorAlerta = document.getElementById('contenedor-alerta');
+    const alerta = document.createElement('div');
+    alerta.className = `alerta alerta-${tipo}`;
+    alerta.textContent = msj;
+
+    contenedorAlerta.appendChild(alerta);
+    setTimeout(() => {
+        contenedorAlerta.removeChild(alerta);
+    }, 5000);
+}
+
+
 cambiarOpinion();
 setInterval(cambiarOpinion, 4000);

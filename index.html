@@ -10,10 +10,11 @@
     <link type="image/png" sizes="32x32" rel="icon" href="img/icons8-dinero-32.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="js/common.js" defer></script>
-    <script src="js/indexnuevo.js" defer></script>
+    <script src="js/index.js" defer></script>
 </head>
 
 <body>
+    <div id="contenedor-alerta"></div>
     <section class="contenedor-gral">
         <header>
             <i class="fa-solid fa-coins"></i>
@@ -62,18 +63,18 @@
                         <p>Seleccione una moneda:</p>
                         <select name="select-moneda-index" id="select-moneda-index">
                             <option value="TODAS" selected>TODAS</option>
-                            <option value="dolares">Dólares</option>
-                            <option value="cotizaciones/eur">Euro</option>
-                            <option value="cotizaciones/brl">Real Brasileño</option>
-                            <option value="cotizaciones/clp">Peso Chileno</option>
-                            <option value="cotizaciones/uyu">Peso Uruguayo</option>
+                            <option value="USD">Dólares</option>
+                            <option value="EUR">Euro</option>
+                            <option value="BRL">Real Brasileño</option>
+                            <option value="CLP">Peso Chileno</option>
+                            <option value="UYU">Peso Uruguayo</option>
                         </select>
                         <i class="fa-solid fa-filter" id="boton-filtro"></i>
                     </div>
                     <p class="texto-datos-actualizados"> </p>
                     <div class="cotizaciones-container-index" id="contenedor-general">
                         <!-- JavaScript -->
-                        <div class="valor-container-index">
+                        <!--<div class="valor-container-index">
                             <div class="caracteres-container-index">
                                 <div>
                                     <h3>NOMBRE</h3>
@@ -87,8 +88,8 @@
                                     <h3>2000</h3>
                                 </div>
                                 <i class="fa-solid fa-star"></i>
-                            </div>   
-                        </div>
+                            </div>
+                        </div> -->
                     </div>
                     <div class="texto-abajo-main">
                         <p>Haga click en la estrella para guardar los datos de la cotización en favoritos</p>

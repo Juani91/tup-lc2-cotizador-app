@@ -161,7 +161,7 @@ header {
 }
 
 
-/* Para dispositivos un ancho máximo de 480px */
+/* Para dispositivos un ancho máximo de 480px SIN TERMINAR */
 @media (max-width: 480px) {
 
     /* HEADER TEXTO - Control de tamaño icono y título*/
@@ -290,4 +290,53 @@ div.contenedor-footer-inf{
     justify-content: center;
     align-items: center;
     padding-bottom:1%;
+}
+
+
+/* ALERTAS */
+
+#contenedor-alerta {
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 300px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.alerta {
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    opacity: 0.7;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: aparecer 0.5s, desaparecer 0.5s 4.5s; 
+}
+
+@keyframes aparecer {
+    from { opacity: 0; }
+    to { opacity: 0.7; }
+}
+
+@keyframes desaparecer {
+    from { opacity: 0.7; }
+    to { opacity: 0; }
+}
+
+.alerta-success {
+    background-color: #28a745;
+}
+
+.alerta-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.alerta-error {
+    background-color: #dc3545;
 }

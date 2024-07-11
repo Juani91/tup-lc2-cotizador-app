@@ -70,6 +70,7 @@ main div.cotizaciones-container-index {
     gap: 1.2em;
     height: 18em;
     border: 1px solid gray;
+    overflow: auto;
 }
 
 main div div.valor-container-index {

@@ -1,4 +1,4 @@
-
+const fechasAgregadas = [];
 const Favoritos = JSON.parse(localStorage.getItem('Favoritos')) || [];
 
 // Función para formatear la fecha al formato tipo "15/04/24"
@@ -10,46 +10,59 @@ function formatearFecha(dateString) {
     return `${day}/${month}/${year}`;
 }
 
+function compararFechas(fecha1, fecha2) {
+    return fecha1 === fecha2;
+}
+
 // Mostrar los favoritos en la tabla
 function mostrarFavoritos() {
 
+    if (Favoritos.length === 0) {
+        Alerta('NO HAY COTIZACIONES GUARDADAS', 'error');
+    }
+
     const tabla = document.getElementById('tablaGeneral');
-    
-    // Usamos un Set para llevar el control de las fechas que ya se han agregado
-    const fechasAgregadas = new Set();
 
     Favoritos.forEach((item, index) => {
         // Formateamos la fecha del item actual.
         const fechaFormateada = formatearFecha(item.fechaActualizacion);
 
-        // Si la fecha no está agregada, la agregamos a la tabla.
-        if (!fechasAgregadas.has(fechaFormateada)) {
+        let fechaExiste = false;
+        for (let i = 0; i < fechasAgregadas.length; i++) {
+            if (compararFechas(fechasAgregadas[i], fechaFormateada)) {
+                fechaExiste = true;
+                break;
+            }
+        }
+
+        // Si la fecha no está agregada, la agregamos a la tabla
+        if (!fechaExiste) {
             const filaFecha = document.createElement('tr');
             filaFecha.className = 'fila';
 
             const celdaFecha = document.createElement('td');
-            celdaFecha.colSpan = 5; 
+            celdaFecha.colSpan = 5;
             celdaFecha.className = 'contenido-fecha';
             celdaFecha.textContent = fechaFormateada;
 
             filaFecha.appendChild(celdaFecha);
             tabla.appendChild(filaFecha);
 
-            fechasAgregadas.add(fechaFormateada);
+            fechasAgregadas.push(fechaFormateada); // Añadimos la fecha al array
         }
 
         const fila = document.createElement('tr');
         fila.className = 'fila contenido-moneda';
 
         const celdaMoneda = document.createElement('td');
-        celdaMoneda.textContent = '';  
+        celdaMoneda.textContent = '';
 
         const celdaNombre = document.createElement('td');
         celdaNombre.className = 'columna-moneda';
-        celdaNombre.textContent = item.nombre;  
+        celdaNombre.textContent = item.nombre;
 
         const celdaCompra = document.createElement('td');
-        celdaCompra.textContent = item.compra; 
+        celdaCompra.textContent = item.compra;
 
         const celdaVenta = document.createElement('td');
         celdaVenta.textContent = item.venta;
@@ -62,12 +75,8 @@ function mostrarFavoritos() {
         // Eliminamos el item, actualizamos el localStorage y recargamos la página
         iconoBorrar.addEventListener('click', function () {
 
-            // Eliminamos 
             Favoritos.splice(index, 1);
-
-            // Actualizamos 
             localStorage.setItem('Favoritos', JSON.stringify(Favoritos));
-
             location.reload();
         });
 
@@ -83,10 +92,7 @@ function mostrarFavoritos() {
     });
 }
 
-mostrarFavoritos();
 
-
-// Imprimir el contenido de la página
 const btnImpresora = document.querySelector('.icono-impresora');
 
 function imprimirContenidoTabla() {
@@ -97,4 +103,5 @@ function imprimirContenidoTabla() {
     ventanaImpresion.print();
 }
 
+mostrarFavoritos();
 btnImpresora.addEventListener('click', imprimirContenidoTabla);
