@@ -76,7 +76,6 @@ function generarTabla() {
             tablaInforme.appendChild(filaDetalle);
         });
     });
-    grafica();
 }
 
 // Función para formatear la fecha
@@ -90,61 +89,56 @@ function formatearFecha(dateString) {
 
 
 //prueba
-function grafica() {
-
-    let filtro = document.getElementById('filtro');
-
-    filtro.addEventListener("click", () => {
-
-        let selectorMonedas = document.getElementById('monedaSelect');
-        let listaMonedasIguales = []
-        let listaFechas = []
-        let listaValoresCompra = []
-        let listaValoresVenta = []
-        Favoritos.forEach((elemento) => {
-            if (selectorMonedas.value == elemento.nombre) {
-                listaMonedasIguales.push(elemento)
-            };
-        });
-        listaMonedasIguales.forEach((elemento) => {
-            if (elemento.fechaActualizacion in listaMonedasIguales) {
-            } else {listaFechas.push(formatearFecha(elemento.fechaActualizacion))};
-        });
-        
-        listaMonedasIguales.forEach((elemento) => {
-            if (elemento.compra in listaMonedasIguales) {
-            } else {listaValoresCompra.push(elemento.compra)};
-        });
-
-        listaMonedasIguales.forEach((elemento) => {
-            if (elemento.venta in listaMonedasIguales) {
-            } else {listaValoresVenta.push(elemento.venta)};
-        });
-
-        const ctx = document.getElementById("miGrafica").getContext("2d");
-        new Chart(ctx, {
-            type: "line",
-            data: {
-                labels: listaFechas,
-                datasets: [{
-                    label: "Compra",
-                    data: listaValoresCompra,
-                    borderColor: "blue",
-                    fill: false
-                },
-                {
-                    label: "Venta",
-                    data: listaValoresVenta,
-                    borderColor: "red",
-                    fill: false
-                }]
-            }
-        });
-    })
-};
 
 
+let filtro = document.getElementById('filtro');
+filtro.addEventListener("click", () => {
 
+    let selectorMonedas = document.getElementById('monedaSelect');
+    let listaMonedasIguales = []
+    let listaFechas = []
+    let listaValoresCompra = []
+    let listaValoresVenta = []
+    Favoritos.forEach((elemento) => {
+        if (selectorMonedas.value == elemento.nombre) {
+            listaMonedasIguales.push(elemento)
+        };
+    });
+    listaMonedasIguales.forEach((elemento) => {
+        if (elemento.fechaActualizacion in listaMonedasIguales) {
+        } else { listaFechas.push(formatearFecha(elemento.fechaActualizacion)) };
+    });
+
+    listaMonedasIguales.forEach((elemento) => {
+        if (elemento.compra in listaMonedasIguales) {
+        } else { listaValoresCompra.push(elemento.compra) };
+    });
+
+    listaMonedasIguales.forEach((elemento) => {
+        if (elemento.venta in listaMonedasIguales) {
+        } else { listaValoresVenta.push(elemento.venta) };
+    });
+
+    const ctx = document.getElementById("miGrafica").getContext("2d");
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: listaFechas,
+            datasets: [{
+                label: "Compra",
+                data: listaValoresCompra,
+                borderColor: "blue",
+                fill: false
+            },
+            {
+                label: "Venta",
+                data: listaValoresVenta,
+                borderColor: "red",
+                fill: false
+            }]
+        }
+    });
+})
 
 
 // Llamar a la función para generar la tabla al cargar la página
