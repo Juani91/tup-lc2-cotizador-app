@@ -95,29 +95,43 @@ let filtro = document.getElementById('filtro');
 filtro.addEventListener("click", () => {
 
     let selectorMonedas = document.getElementById('monedaSelect');
+
     let listaMonedasIguales = []
     let listaFechas = []
     let listaValoresCompra = []
     let listaValoresVenta = []
-    Favoritos.forEach((elemento) => {
-        if (selectorMonedas.value == elemento.nombre) {
-            listaMonedasIguales.push(elemento)
-        };
-    });
-    listaMonedasIguales.forEach((elemento) => {
-        if (elemento.fechaActualizacion in listaMonedasIguales) {
-        } else { listaFechas.push(formatearFecha(elemento.fechaActualizacion)) };
-    });
 
-    listaMonedasIguales.forEach((elemento) => {
-        if (elemento.compra in listaMonedasIguales) {
-        } else { listaValoresCompra.push(elemento.compra) };
-    });
+    if (selectorMonedas.value != "TODAS") {
+        Favoritos.forEach((elemento) => {
+            if (selectorMonedas.value == elemento.nombre) {
+                listaMonedasIguales.push(elemento)
+            };
+        });
+        listaMonedasIguales.forEach((elemento) => {
+            fechaFormateada = formatearFecha(elemento.fechaActualizacion)
+            if (fechaFormateada in listaMonedasIguales) {
+            } else { listaFechas.push(fechaFormateada) };
+        });
 
-    listaMonedasIguales.forEach((elemento) => {
-        if (elemento.venta in listaMonedasIguales) {
-        } else { listaValoresVenta.push(elemento.venta) };
-    });
+        listaMonedasIguales.forEach((elemento) => {
+            if (elemento.compra in listaMonedasIguales) {
+            } else { listaValoresCompra.push(elemento.compra) };
+        });
+
+        listaMonedasIguales.forEach((elemento) => {
+            if (elemento.venta in listaMonedasIguales) {
+            } else { listaValoresVenta.push(elemento.venta) };
+        });
+
+    } else {
+        Favoritos.forEach((elemento) => {
+            fechaFormateada = formatearFecha(elemento.fechaActualizacion)
+            if (fechaFormateada in listaFechas) {
+            } else { listaFechas.push(fechaFormateada) };
+        });
+    }
+
+
 
     const ctx = document.getElementById("miGrafica").getContext("2d");
     new Chart(ctx, {
@@ -139,7 +153,6 @@ filtro.addEventListener("click", () => {
         }
     });
 })
-
 
 // Llamar a la función para generar la tabla al cargar la página
 generarTabla();
