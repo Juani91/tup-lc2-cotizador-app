@@ -100,7 +100,7 @@ filtro.addEventListener("click", () => {
     let listaFechas = []
     let listaValoresCompra = []
     let listaValoresVenta = []
-
+    Favoritos.sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
     if (selectorMonedas.value != "TODAS") {
         Favoritos.forEach((elemento) => {
             if (selectorMonedas.value == elemento.nombre) {
@@ -132,7 +132,6 @@ filtro.addEventListener("click", () => {
     }
 
 
-
     const ctx = document.getElementById("miGrafica").getContext("2d");
     new Chart(ctx, {
         type: "line",
@@ -152,10 +151,6 @@ filtro.addEventListener("click", () => {
             }]
         }
     });
-    listaMonedasIguales = []
-    listaFechas = []
-    listaValoresCompra = []
-    listaValoresVenta = []
 })
 
 // Llamar a la función para generar la tabla al cargar la página

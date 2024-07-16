@@ -22,7 +22,7 @@ function mostrarFavoritos() {
     }
 
     const tabla = document.getElementById('tablaGeneral');
-
+    Favoritos.sort((a, b) => new Date(b.fechaActualizacion) - new Date(a.fechaActualizacion));
     Favoritos.forEach((item, index) => {
         // Formateamos la fecha del item actual.
         const fechaFormateada = formatearFecha(item.fechaActualizacion);
@@ -34,7 +34,7 @@ function mostrarFavoritos() {
                 break;
             }
         }
-
+        
         // Si la fecha no está agregada, la agregamos a la tabla
         if (!fechaExiste) {
             const filaFecha = document.createElement('tr');
