@@ -112,18 +112,6 @@
     align-items: center;
 }
 
-.grafico {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.grafico-imagen{
-    max-height: 26vh;
-    height: 100%;
-    width: 75%;
-    border-radius: 0;
-}
 
 /* MITAD INFERIOR */
 .mitad-inferior {

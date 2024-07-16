@@ -152,6 +152,10 @@ filtro.addEventListener("click", () => {
             }]
         }
     });
+    listaMonedasIguales = []
+    listaFechas = []
+    listaValoresCompra = []
+    listaValoresVenta = []
 })
 
 // Llamar a la función para generar la tabla al cargar la página
