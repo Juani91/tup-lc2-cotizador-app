@@ -100,7 +100,6 @@ function generarTabla() {
             tablaInforme.appendChild(filaDetalle);
         });
     });
-    apiCompartir()
 }
 
 // Función para formatear la fecha
@@ -196,156 +195,44 @@ function crearGrafico(listaFechas, datasets) {
     });
 }
 
-function compartirInfo() {
-    
-    const botonCompartirInfo = document.getElementById('compartirEmail');
-    const ventanaCompartir = document.getElementById('ventana-compartir');
-    const botonCerrarFormulario = document.getElementById('boton-cerrar');
-    
-    botonCompartirInfo.addEventListener('click', () => {
-        ventanaCompartir.classList = ('ventana-compartir-active');
-    });
-
-    botonCerrarFormulario.addEventListener('click', () => {
-        ventanaCompartir.classList = ('ventana-compartir');
-    });
-}
-
-compartirInfo();
 
 
-// function Alerta(msj, tipo) {
-//     const contenedorAlerta = document.getElementById('contenedor-alerta');
-//     const alerta = document.createElement('div');
-//     alerta.className = `alerta alerta-${tipo}`;
-//     alerta.textContent = msj;
+const botonCompartirInfo = document.getElementById('compartirEmail');
+const ventanaCompartir = document.getElementById('ventana-compartir');
+const botonCerrarFormulario = document.getElementById('boton-cerrar');
 
-//     contenedorAlerta.appendChild(alerta);
-//     setTimeout(() => {
-//         contenedorAlerta.removeChild(alerta);
-//     }, 5000);
-// }
-
-/*function compartirInfo() {
-
-    compartirInformacion = document.getElementById('CompartirEmail');
-
-    compartirInformacion.addEventListener("click", () => {
-
-        const formulario = document.createElement('div');
-
-        const titulo = document.createElement('h2');
-        titulo.textContent = 'DATOS DEL DESTINATARIO';
-
-        const labelNombre = document.createElement('label');
-        labelNombre.textContent = 'Nombre:';
-        const indexNombre = document.createElement('input');
-
-        const labelEmail = documento.createElement('label');
-        labelEmail.textContent = 'Email:';
-        const indexEmail = document.createElement('input');
-
-        const botonCancelar = document.createElement('button');
-        botonCancelar.textContent = 'Cancelar';
-        const botonEnviar = document.createElement('button');
-        botonEnviar.textContent = 'Enviar';
-
-        formulario.appendChild(titulo);
-        formulario.appendChild(labelNombre);
-        formulario.appendChild(indexNombre);
-        formulario.appendChild(labelEmail);
-        formulario.appendChild(indexEmail);
-        formulario.appendChild(botonCancelar);
-        formulario.appendChild(botonEnviar);
-
-        compartirInformacion.appendChild(formulario);
-
-    })
-
-    var tabla = {
-        name: 'James',
-        notes: 'Check this out!',
-    };
-
-    emailjs.send('formulario', 'template_dag5nc4', tabla).then(
-        (response) => {
-            console.log('Tabla enviada con éxito', response.status, response.text);
-        },
-        (error) => {
-            console.log('ERROR. No se pudo enviar la tabla', error);
-        },
-    );
-}*/
-
-function apiCompartir() {
-
-    divisor = document.getElementById('contenedor-formulario');
-    compartirInformacion = document.getElementById('compartirEmail');
-    compartirInformacion.addEventListener("click", () => {
-
-        const contenedorInformes = document.getElementById('contenedor-alerta');
-        contenedorInformes.className = ('cuadro-informes');
-        const tabla = document.createElement('table');
-
-        const fila1 = document.createElement('tr');
-        const renglon1fila1 = document.createElement('td');
-        const renglon2fila1 = document.createElement('td');
-
-        const fila2 = document.createElement('tr');
-        const renglon1fila2 = document.createElement('td');
-        const renglon2fila2 = document.createElement('td');
-
-        const etiqueta1 = document.createElement('label');
-        etiqueta1.textContent = 'Nombre:';
-        const nombreFormulario = document.createElement('input');
-        nombreFormulario.type = 'text';
-        nombreFormulario.id = 'nombreFormulario'
-
-        const etiqueta2 = document.createElement('label');
-        etiqueta2.textContent = 'Email:';
+botonCompartirInfo.addEventListener('click', () => {
+    ventanaCompartir.classList = ('ventana-compartir-active');
+    const botonEnviar = document.getElementById('enviarTabla')
+    botonEnviar.addEventListener('click', () => {
 
 
-        const emailFormulario = document.createElement('input');
-        emailFormulario.id = 'emailFormulario';
-        emailFormulario.type = 'email';
+        const nombreCuadrito = document.getElementById('nombre');
+        const emailCuadrito = document.getElementById('email');
 
-        renglon1fila1.appendChild(etiqueta1);
-        renglon2fila1.appendChild(nombreFormulario);
-        fila1.appendChild(renglon1fila1);
-        fila1.appendChild(renglon2fila1)
-        tabla.appendChild(fila1);
-
-        renglon1fila2.appendChild(etiqueta2);
-        renglon2fila2.appendChild(emailFormulario);
-        fila2.appendChild(renglon1fila2);
-        fila2.appendChild(renglon2fila2);
-        tabla.appendChild(fila2);
-
-        contenedorInformes.appendChild(tabla);
-
-        // Agregar contenedorInformes al divisor
-        divisor.appendChild(contenedorInformes);
-
-        // Envío del email
-        function compartirFormulario() {
-            const nombreAPI = nombreFormulario.value;
-            const emailAPI = emailFormulario.value;
-            const valoresAPI = {
-                nombre: nombreAPI,
-                email: emailAPI,
-            };
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', valoresAPI).then(
-                (response) => {
-                    console.log('Email enviado con éxito!', response.status, response.text);
-                },
-                (error) => {
-                    console.log('ERROR. No se pudo enviar el mail', error);
-                }
-            );
+        const formularioEnviar = {
+            nombre: nombreCuadrito.value,
+            email: emailCuadrito.value,
         }
-        divisor.appendChild(contenedorInformes);
-        compartirFormulario();
+
+        emailjs.send('service_m4eknnn', 'template_kcvbfxz', formularioEnviar, 'WDMuRSBxfzzsEv0Pb').then(
+            (response) => {
+                alert('Datos enviados con éxito!', response.status, response.text);
+            },
+            (error) => {
+                alert('ERROR. No se pudieron enviar los datos', error);
+            }
+        );
+
     });
-        }
+});
+
+botonCerrarFormulario.addEventListener('click', () => {
+    ventanaCompartir.classList = ('ventana-compartir');
+});
+
+
+
+
 generarTabla();
 tablaContenido();
