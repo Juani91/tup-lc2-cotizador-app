@@ -1,6 +1,30 @@
-
 const Favoritos = JSON.parse(localStorage.getItem('Favoritos')) || [];
 const tablaInforme = document.getElementById('tablaInforme');
+const colores = [
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(173, 216, 230, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(240, 128, 128, 0.6)',
+    'rgba(0, 128, 0, 0.6)',
+    'rgba(144, 238, 144, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(218, 112, 214, 0.6)',
+    'rgba(255, 165, 0, 0.6)',
+    'rgba(244, 164, 96, 0.6)',
+    'rgba(165, 42, 42, 0.6)',
+    'rgba(222, 184, 135, 0.6)',
+    'rgba(0, 0, 128, 0.6)',
+    'rgba(135, 206, 235, 0.6)',
+    'rgba(128, 0, 0, 0.6)',
+    'rgba(250, 128, 114, 0.6)',
+    'rgba(128, 128, 0, 0.6)',
+    'rgba(154, 205, 50, 0.6)',
+    'rgba(0, 128, 128, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(221, 160, 221, 0.6)'
+];
+
 
 // Función para generar la tabla con los datos de Favoritos
 function generarTabla() {
@@ -76,6 +100,7 @@ function generarTabla() {
             tablaInforme.appendChild(filaDetalle);
         });
     });
+    apiCompartir()
 }
 
 // Función para formatear la fecha
@@ -87,71 +112,223 @@ function formatearFecha(dateString) {
     return `${day}/${month}/${year}`;
 }
 
-
-//prueba
-
-
 let filtro = document.getElementById('filtro');
 filtro.addEventListener("click", () => {
+    tablaContenido();
+});
 
-    let selectorMonedas = document.getElementById('monedaSelect');
 
-    let listaMonedasIguales = []
-    let listaFechas = []
-    let listaValoresCompra = []
-    let listaValoresVenta = []
+function tablaContenido() {
+    let selectorMonedas = document.getElementById('monedaSelect').value;
+
+    let listaFechas = [];
+    let datasets = [];
+
     Favoritos.sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
-    if (selectorMonedas.value != "TODAS") {
+
+    if (selectorMonedas !== "TODAS") {
+        let listaValoresCompra = [];
+        let listaValoresVenta = [];
         Favoritos.forEach((elemento) => {
-            if (selectorMonedas.value == elemento.nombre) {
-                listaMonedasIguales.push(elemento)
-            };
-        });
-        listaMonedasIguales.forEach((elemento) => {
-            fechaFormateada = formatearFecha(elemento.fechaActualizacion)
-            if (fechaFormateada in listaMonedasIguales) {
-            } else { listaFechas.push(fechaFormateada) };
-        });
-
-        listaMonedasIguales.forEach((elemento) => {
-            if (elemento.compra in listaMonedasIguales) {
-            } else { listaValoresCompra.push(elemento.compra) };
+            if (selectorMonedas === elemento.nombre) {
+                const fechaFormateada = formatearFecha(elemento.fechaActualizacion);
+                if (!listaFechas.includes(fechaFormateada)) {
+                    listaFechas.push(fechaFormateada);
+                }
+                listaValoresCompra.push(elemento.compra);
+                listaValoresVenta.push(elemento.venta);
+            }
         });
 
-        listaMonedasIguales.forEach((elemento) => {
-            if (elemento.venta in listaMonedasIguales) {
-            } else { listaValoresVenta.push(elemento.venta) };
+        datasets.push({
+            label: `${selectorMonedas} - Compra`,
+            data: listaValoresCompra,
+            borderColor: colores[0],
+            fill: false
         });
 
+        datasets.push({
+            label: `${selectorMonedas} - Venta`,
+            data: listaValoresVenta,
+            borderColor: colores[1],
+            fill: false
+        });
     } else {
+        const monedaData = {};
+
         Favoritos.forEach((elemento) => {
-            fechaFormateada = formatearFecha(elemento.fechaActualizacion)
-            if (fechaFormateada in listaFechas) {
-            } else { listaFechas.push(fechaFormateada) };
+            const fechaFormateada = formatearFecha(elemento.fechaActualizacion);
+            if (!listaFechas.includes(fechaFormateada)) {
+                listaFechas.push(fechaFormateada);
+            }
+            if (!monedaData[elemento.nombre]) {
+                monedaData[elemento.nombre] = { compra: [] };
+            }
+            monedaData[elemento.nombre].compra.push(elemento.compra);
+        });
+
+        Object.keys(monedaData).forEach((moneda, index) => {
+            const colorIndex = (index * 2);
+            datasets.push({
+                label: `${moneda} - Compra`,
+                data: monedaData[moneda].compra,
+                borderColor: colores[colorIndex],
+                fill: false
+            });
         });
     }
 
+    crearGrafico(listaFechas, datasets);
+}
 
+
+function crearGrafico(listaFechas, datasets) {
     const ctx = document.getElementById("miGrafica").getContext("2d");
-    new Chart(ctx, {
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+    window.myChart = new Chart(ctx, {
         type: "line",
         data: {
             labels: listaFechas,
-            datasets: [{
-                label: "Compra",
-                data: listaValoresCompra,
-                borderColor: "blue",
-                fill: false
-            },
-            {
-                label: "Venta",
-                data: listaValoresVenta,
-                borderColor: "red",
-                fill: false
-            }]
-        }
+            datasets: datasets
+        },
     });
-})
+}
 
-// Llamar a la función para generar la tabla al cargar la página
+
+// function Alerta(msj, tipo) {
+//     const contenedorAlerta = document.getElementById('contenedor-alerta');
+//     const alerta = document.createElement('div');
+//     alerta.className = `alerta alerta-${tipo}`;
+//     alerta.textContent = msj;
+
+//     contenedorAlerta.appendChild(alerta);
+//     setTimeout(() => {
+//         contenedorAlerta.removeChild(alerta);
+//     }, 5000);
+// }
+
+function compartirInfo() {
+
+    compartirInformacion = document.getElementById('CompartirEmail');
+
+    compartirInformacion.addEventListener("click", () => {
+
+        const formulario = document.createElement('div');
+
+        const titulo = document.createElement('h2');
+        titulo.textContent = 'DATOS DEL DESTINATARIO';
+
+        const labelNombre = document.createElement('label');
+        labelNombre.textContent = 'Nombre:';
+        const indexNombre = document.createElement('input');
+
+        const labelEmail = documento.createElement('label');
+        labelEmail.textContent = 'Email:';
+        const indexEmail = document.createElement('input');
+
+        const botonCancelar = document.createElement('button');
+        botonCancelar.textContent = 'Cancelar';
+        const botonEnviar = document.createElement('button');
+        botonEnviar.textContent = 'Enviar';
+
+        formulario.appendChild(titulo);
+        formulario.appendChild(labelNombre);
+        formulario.appendChild(indexNombre);
+        formulario.appendChild(labelEmail);
+        formulario.appendChild(indexEmail);
+        formulario.appendChild(botonCancelar);
+        formulario.appendChild(botonEnviar);
+
+        compartirInformacion.appendChild(formulario);
+
+    })
+
+    var tabla = {
+        name: 'James',
+        notes: 'Check this out!',
+    };
+
+    emailjs.send('formulario', 'template_dag5nc4', tabla).then(
+        (response) => {
+            console.log('Tabla enviada con éxito', response.status, response.text);
+        },
+        (error) => {
+            console.log('ERROR. No se pudo enviar la tabla', error);
+        },
+    );
+}
+
+function apiCompartir() {
+
+    divisor = document.getElementById('contenedor-formulario');
+    compartirInformacion = document.getElementById('compartirEmail');
+    compartirInformacion.addEventListener("click", () => {
+
+        const contenedorInformes = document.getElementById('contenedor-alerta');
+        contenedorInformes.className = ('cuadro-informes');
+        const tabla = document.createElement('table');
+
+        const fila1 = document.createElement('tr');
+        const renglon1fila1 = document.createElement('td');
+        const renglon2fila1 = document.createElement('td');
+
+        const fila2 = document.createElement('tr');
+        const renglon1fila2 = document.createElement('td');
+        const renglon2fila2 = document.createElement('td');
+
+        const etiqueta1 = document.createElement('label');
+        etiqueta1.textContent = 'Nombre:';
+        const nombreFormulario = document.createElement('input');
+        nombreFormulario.type = 'text';
+        nombreFormulario.id = 'nombreFormulario'
+
+        const etiqueta2 = document.createElement('label');
+        etiqueta2.textContent = 'Email:';
+
+
+        const emailFormulario = document.createElement('input');
+        emailFormulario.id = 'emailFormulario';
+        emailFormulario.type = 'email';
+
+        renglon1fila1.appendChild(etiqueta1);
+        renglon2fila1.appendChild(nombreFormulario);
+        fila1.appendChild(renglon1fila1);
+        fila1.appendChild(renglon2fila1)
+        tabla.appendChild(fila1);
+
+        renglon1fila2.appendChild(etiqueta2);
+        renglon2fila2.appendChild(emailFormulario);
+        fila2.appendChild(renglon1fila2);
+        fila2.appendChild(renglon2fila2);
+        tabla.appendChild(fila2);
+
+        contenedorInformes.appendChild(tabla);
+
+        // Agregar contenedorInformes al divisor
+        divisor.appendChild(contenedorInformes);
+
+        // Envío del email
+        function compartirFormulario() {
+            const nombreAPI = nombreFormulario.value;
+            const emailAPI = emailFormulario.value;
+            const valoresAPI = {
+                nombre: nombreAPI,
+                email: emailAPI,
+            };
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', valoresAPI).then(
+                (response) => {
+                    console.log('Email enviado con éxito!', response.status, response.text);
+                },
+                (error) => {
+                    console.log('ERROR. No se pudo enviar el mail', error);
+                }
+            );
+        }
+        divisor.appendChild(contenedorInformes);
+        compartirFormulario();
+    });
+        }
 generarTabla();
+tablaContenido();

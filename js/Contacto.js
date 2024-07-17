@@ -1,9 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', function () {
 
-  document.getElementById('enviar').addEventListener('click', function (event) {
+  document.getElementById('enviar').addEventListener('click', () => {
 
-    event.preventDefault();
     email = document.getElementById('email').value.trim();
     nombre = document.getElementById('nombre').value,
     mensaje = document.getElementById('mensaje').value
@@ -38,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
       mensaje = document.getElementById('mensaje').value= " ";
   });
 
-  document.getElementById('limpiar').addEventListener('click', function (event) {
+  document.getElementById('limpiar').addEventListener('click', () => {
     email = document.getElementById('email').value= " ";
     nombre = document.getElementById('nombre').value= " ";
     mensaje = document.getElementById('mensaje').value= " ";
