@@ -15,7 +15,20 @@
 </head>
 
 <body>
-    <div id="contenedor-formulario" class="cuadro-informes"></div>
+    <div class="ventana-compartir" id="ventana-compartir">
+            <form id="contenedor-formulario" class="cuadro-informes" action="">
+                <h3 class="informes-form-titulo">DATOS DEL DESTINATARIO</h3>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" class="datos" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" class="datos" required><br>
+                <div class="botones">
+                    <button class="boton cerrar" id="boton-cerrar">Cerrar</button>
+                    <input type="submit" value="Enviar" class="boton enviar">
+                </div>
+
+            </form>
+    </div>
     <section class="contenedor-gral">
         <header>
             <i class="fa-solid fa-coins"></i><p>Cotizador de Monedas</p>

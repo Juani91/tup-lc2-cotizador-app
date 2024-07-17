@@ -196,6 +196,23 @@ function crearGrafico(listaFechas, datasets) {
     });
 }
 
+function compartirInfo() {
+    
+    const botonCompartirInfo = document.getElementById('compartirEmail');
+    const ventanaCompartir = document.getElementById('ventana-compartir');
+    const botonCerrarFormulario = document.getElementById('boton-cerrar');
+    
+    botonCompartirInfo.addEventListener('click', () => {
+        ventanaCompartir.classList = ('ventana-compartir-active');
+    });
+
+    botonCerrarFormulario.addEventListener('click', () => {
+        ventanaCompartir.classList = ('ventana-compartir');
+    });
+}
+
+compartirInfo();
+
 
 // function Alerta(msj, tipo) {
 //     const contenedorAlerta = document.getElementById('contenedor-alerta');
@@ -209,7 +226,7 @@ function crearGrafico(listaFechas, datasets) {
 //     }, 5000);
 // }
 
-function compartirInfo() {
+/*function compartirInfo() {
 
     compartirInformacion = document.getElementById('CompartirEmail');
 
@@ -258,7 +275,7 @@ function compartirInfo() {
             console.log('ERROR. No se pudo enviar la tabla', error);
         },
     );
-}
+}*/
 
 function apiCompartir() {
 

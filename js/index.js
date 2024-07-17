@@ -222,4 +222,4 @@ function crearItem(item) {
 fetchDatos();
 cambiarFechayHora();
 cargarIndex();
-botonFiltro.addEventListener("click", elegirMoneda);
+botonFiltro.addEventListener("click", elegirMoneda);    
