@@ -128,3 +128,6 @@ div.botones-abajo button:first-child{
 
 }
 
+.boton-L:hover, .boton-E:hover {
+    cursor: pointer;
+}

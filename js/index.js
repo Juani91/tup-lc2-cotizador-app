@@ -16,9 +16,24 @@ function compararMonedas(moneda1, moneda2) {
         moneda1.casa === moneda2.casa &&
         moneda1.nombre === moneda2.nombre &&
         moneda1.compra === moneda2.compra &&
-        moneda1.venta === moneda2.venta;
+        moneda1.venta === moneda2.venta &&
+        compararFechasSinHora(moneda1.fechaActualizacion, moneda2.fechaActualizacion);
 }
 
+function compararFechasSinHora(fecha1, fecha2) {
+    const fechaFormateada1 = new Date(fecha1).toLocaleDateString('es-AR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+    const fechaFormateada2 = new Date(fecha2).toLocaleDateString('es-AR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+
+    return fechaFormateada1 === fechaFormateada2;
+}
 
 function cambiarFechayHora() {
 

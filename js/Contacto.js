@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!validarMail(email)) {
-      alert('Por favor ingrese e-mail válido.');
+      Alerta('Por favor ingrese e-mail válido.', 'warning');
       return;
     }
 
@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
     emailjs.send('formulario', 'template_dag5nc4', formulario, 'WDMuRSBxfzzsEv0Pb')
       .then(function (response) {
         console.log('¡Correo enviado con éxito!', response.status, response.text);
-        alert('¡Correo enviado con éxito!');
+        Alerta('¡Correo enviado con éxito!', 'success');
         document.getElementById('formulario').reset();
       }, function (error) {
         console.error('¡Error al enviar el correo!', error);
-        alert('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.');
+        Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
       });
       email = document.getElementById('email').value= " ";
       nombre = document.getElementById('nombre').value= " ";

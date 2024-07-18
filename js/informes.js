@@ -29,6 +29,7 @@ const colores = [
 // Función para generar la tabla con los datos de Favoritos
 function generarTabla() {
     tablaInforme.innerHTML = '';
+    const monedaSelect = document.getElementById('monedaSelect')
 
     // Agrupar por nombre de moneda
     const listaFavoritos = Favoritos.reduce((datos, favorito) => {
@@ -39,68 +40,127 @@ function generarTabla() {
         return datos;
     }, {});
 
-    Object.keys(listaFavoritos).forEach(nombre => {
-        const favoritos = listaFavoritos[nombre];
+    if (monedaSelect.value == 'TODAS') {
+        Object.keys(listaFavoritos).forEach(nombre => {
+            const favoritos = listaFavoritos[nombre];
 
-        // Ordenar las fechas de menor a mayor
-        favoritos.sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
+            // Ordenar las fechas de menor a mayor
+            favoritos.sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
 
-        // Primera fila con el nombre del favorito
-        const fila = document.createElement('tr');
-        const filaNombre = document.createElement('td');
-        filaNombre.colSpan = 5;
-        filaNombre.classList.add('moneda');
-        filaNombre.textContent = nombre;
-        fila.appendChild(filaNombre);
-        tablaInforme.appendChild(fila);
+            // Primera fila con el nombre del favorito
+            const fila = document.createElement('tr');
+            const filaNombre = document.createElement('td');
+            filaNombre.colSpan = 5;
+            filaNombre.classList.add('moneda');
+            filaNombre.textContent = nombre;
+            fila.appendChild(filaNombre);
+            tablaInforme.appendChild(fila);
 
-        // Variable para almacenar el precio de venta del día anterior
-        let precioVentaPrevio = null;
+            // Variable para almacenar el precio de venta del día anterior
+            let precioVentaPrevio = null;
 
-        // Array temporal para almacenar las filas de detalle
-        const filasDetalles = [];
+            // Array temporal para almacenar las filas de detalle
+            const filasDetalles = [];
 
-        // Filas con los detalles de compra y venta
-        favoritos.forEach(favorito => {
-            const filaDetalle = document.createElement('tr');
+            // Filas con los detalles de compra y venta
+            favoritos.forEach(favorito => {
+                const filaDetalle = document.createElement('tr');
 
-            const celdaVacia = document.createElement('td');
+                const celdaVacia = document.createElement('td');
 
-            const celdaFecha = document.createElement('td');
-            celdaFecha.textContent = formatearFecha(favorito.fechaActualizacion);
+                const celdaFecha = document.createElement('td');
+                celdaFecha.textContent = formatearFecha(favorito.fechaActualizacion);
 
-            const celdaCompra = document.createElement('td');
-            celdaCompra.textContent = `$${favorito.compra}`;
+                const celdaCompra = document.createElement('td');
+                celdaCompra.textContent = `$${favorito.compra}`;
 
-            const celdaVenta = document.createElement('td');
-            celdaVenta.textContent = `$${favorito.venta}`;
+                const celdaVenta = document.createElement('td');
+                celdaVenta.textContent = `$${favorito.venta}`;
 
-            const iconoFlecha = document.createElement('td');
-            if (precioVentaPrevio !== null) {
-                if (favorito.venta > precioVentaPrevio) {
-                    iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-up"></i>';
-                } else if (favorito.venta < precioVentaPrevio) {
-                    iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-down"></i>';
+                const iconoFlecha = document.createElement('td');
+                if (precioVentaPrevio !== null) {
+                    if (favorito.venta > precioVentaPrevio) {
+                        iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-up"></i>';
+                    } else if (favorito.venta < precioVentaPrevio) {
+                        iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-down"></i>';
+                    }
                 }
-            }
-            precioVentaPrevio = favorito.venta;
+                precioVentaPrevio = favorito.venta;
 
-            filaDetalle.appendChild(celdaVacia);
-            filaDetalle.appendChild(celdaFecha);
-            filaDetalle.appendChild(celdaCompra);
-            filaDetalle.appendChild(celdaVenta);
-            filaDetalle.appendChild(iconoFlecha);
+                filaDetalle.appendChild(celdaVacia);
+                filaDetalle.appendChild(celdaFecha);
+                filaDetalle.appendChild(celdaCompra);
+                filaDetalle.appendChild(celdaVenta);
+                filaDetalle.appendChild(iconoFlecha);
 
-            // Añadir la fila de detalle al array temporal
-            filasDetalles.push(filaDetalle);
+                // Añadir la fila de detalle al array temporal
+                filasDetalles.push(filaDetalle);
+            });
+
+            // Añadir las filas de detalle en orden inverso para mostrar la fecha más reciente primero
+            filasDetalles.reverse().forEach(filaDetalle => {
+                tablaInforme.appendChild(filaDetalle);
+            });
         });
+    } else {
+        let favoritoFiltrado = monedaSelect.value;
+        console.log(favoritoFiltrado);
+        if (listaFavoritos[favoritoFiltrado].length > 0) {
+            
+            listaFavoritos[favoritoFiltrado].sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
+            const fila = document.createElement('tr');
+            const filaNombre = document.createElement('td');
+            filaNombre.colSpan = 5;
+            filaNombre.classList.add('moneda');
+            filaNombre.textContent = favoritoFiltrado;
+            fila.appendChild(filaNombre);
+            tablaInforme.appendChild(fila);
 
-        // Añadir las filas de detalle en orden inverso para mostrar la fecha más reciente primero
-        filasDetalles.reverse().forEach(filaDetalle => {
-            tablaInforme.appendChild(filaDetalle);
-        });
-    });
+            let precioVentaPrevio = null;
+
+            const filasDetalles = [];
+
+            listaFavoritos[favoritoFiltrado].forEach(favorito => {
+                const filaDetalle = document.createElement('tr');
+
+                const celdaVacia = document.createElement('td');
+
+                const celdaFecha = document.createElement('td');
+                celdaFecha.textContent = formatearFecha(favorito.fechaActualizacion);
+
+                const celdaCompra = document.createElement('td');
+                celdaCompra.textContent = `$${favorito.compra}`;
+
+                const celdaVenta = document.createElement('td');
+                celdaVenta.textContent = `$${favorito.venta}`;
+
+                const iconoFlecha = document.createElement('td');
+                if (precioVentaPrevio !== null) {
+                    if (favorito.venta > precioVentaPrevio) {
+                        iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-up"></i>';
+                    } else if (favorito.venta < precioVentaPrevio) {
+                        iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-down"></i>';
+                    }
+                }
+                precioVentaPrevio = favorito.venta;
+
+                filaDetalle.appendChild(celdaVacia);
+                filaDetalle.appendChild(celdaFecha);
+                filaDetalle.appendChild(celdaCompra);
+                filaDetalle.appendChild(celdaVenta);
+                filaDetalle.appendChild(iconoFlecha);
+
+                filasDetalles.push(filaDetalle);
+            });
+
+            filasDetalles.reverse().forEach(filaDetalle => {
+                tablaInforme.appendChild(filaDetalle);
+            });
+        }
+    }
 }
+
+
 
 // Función para formatear la fecha
 function formatearFecha(dateString) {
@@ -113,6 +173,7 @@ function formatearFecha(dateString) {
 
 let filtro = document.getElementById('filtro');
 filtro.addEventListener("click", () => {
+    generarTabla();
     tablaContenido();
 });
 
@@ -169,7 +230,7 @@ function tablaContenido() {
         Object.keys(monedaData).forEach((moneda, index) => {
             const colorIndex = (index * 2);
             datasets.push({
-                label: `${moneda} - Compra`,
+                label: `${moneda}`,
                 data: monedaData[moneda].compra,
                 borderColor: colores[colorIndex],
                 fill: false
@@ -197,42 +258,43 @@ function crearGrafico(listaFechas, datasets) {
 
 
 
-const botonCompartirInfo = document.getElementById('compartirEmail');
-const ventanaCompartir = document.getElementById('ventana-compartir');
-const botonCerrarFormulario = document.getElementById('boton-cerrar');
+function compartirInformacion() {
+    const botonCompartirInfo = document.getElementById('compartirEmail');
+    const ventanaCompartir = document.getElementById('ventana-compartir');
+    const botonCerrarFormulario = document.getElementById('boton-cerrar');
 
-botonCompartirInfo.addEventListener('click', () => {
-    ventanaCompartir.classList = ('ventana-compartir-active');
-    const botonEnviar = document.getElementById('enviarTabla')
-    botonEnviar.addEventListener('click', () => {
+    botonCompartirInfo.addEventListener('click', () => {
+        ventanaCompartir.classList = ('ventana-compartir-active');
+        const botonEnviar = document.getElementById('enviarTabla')
+        botonEnviar.addEventListener('click', () => {
 
 
-        const nombreCuadrito = document.getElementById('nombre');
-        const emailCuadrito = document.getElementById('email');
+            const nombreFormulario = document.getElementById('nombre').value;
+            const emailFormulario = document.getElementById('email').value;
 
-        const formularioEnviar = {
-            nombre: nombreCuadrito.value,
-            email: emailCuadrito.value,
-        }
-
-        emailjs.send('service_m4eknnn', 'template_kcvbfxz', formularioEnviar, 'WDMuRSBxfzzsEv0Pb').then(
-            (response) => {
-                alert('Datos enviados con éxito!', response.status, response.text);
-            },
-            (error) => {
-                alert('ERROR. No se pudieron enviar los datos', error);
+            const formularioEnviar = {
+                nombre: nombreFormulario,
+                email: emailFormulario,
             }
-        );
 
+            emailjs.send('service_m4eknnn', 'template_kcvbfxz', formularioEnviar, 'WDMuRSBxfzzsEv0Pb')
+            .then(function (response) {
+              console.log('¡Correo enviado con éxito!', response.status, response.text);
+              alert('¡Correo enviado con éxito!');
+              document.getElementById('formulario').reset();
+            }, function (error) {
+              console.error('¡Error al enviar el correo!', error);
+              alert('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.');
+            });
+
+        });
     });
-});
 
-botonCerrarFormulario.addEventListener('click', () => {
-    ventanaCompartir.classList = ('ventana-compartir');
-});
+    botonCerrarFormulario.addEventListener('click', () => {
+        ventanaCompartir.classList = ('ventana-compartir');
+    });
+};
 
-
-
-
+compartirInformacion();
 generarTabla();
 tablaContenido();

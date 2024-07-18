@@ -50,7 +50,6 @@ header {
 /* BARRA IZQUIERDA */
 .cuerpo-izq {
     background-color: #fff;
-    flex: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -59,18 +58,18 @@ header {
     gap: 2em;
 }
 
-.cuerpo-izq ul.botones{
+.cuerpo-izq ul.botones {
     list-style: none;
     padding-inline-start: 0px;
     display: flex;
     flex-direction: column;
-    flex: 1.5;
+    gap: 0.5em; 
 }
 
-.cuerpo-izq ul.botones button{
+.cuerpo-izq ul.botones button {
     width: 100%;
     padding: 0.2rem;
-    min-height: 25px;
+    min-height: 5vh;
     font-size: 90%;
     font-weight: bold;
     background-color: #0E6251;
@@ -78,7 +77,6 @@ header {
     display: flex;
     align-items: center;
     border: 0px;
-    max-height: 3em;
 }
 
 .cuerpo-izq ul.botones button:hover {
@@ -99,36 +97,36 @@ header {
     font-size: 1em;
 }
 
-.cuerpo-izq li{
-    padding: 0.3em;
+.cuerpo-izq li {
     display: flex;
     justify-content: center;
     flex: 1;
 }
 
-.cuerpo-izq li:first-of-type{
+.cuerpo-izq li:first-of-type {
     justify-content: flex-end;
 }
 
-.cuerpo-izq ul.botones button.inicio-button{
+.cuerpo-izq ul.botones button.inicio-button {
     width: 50%;
 }
 
 .cuerpo-izq div.contenedor-reseña {
     background-color: #fff;
-    flex: 2;
     display: flex;
     flex-direction: column;
     border: 2px solid #0E6251;
-    max-height: 15em;
+    height: 12em; 
+    max-height: 12em;
     width: 12em;
+    flex-shrink: 0;
 }
 
 .cuerpo-izq div.persona {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 5em;
+    height: 5em; 
     width: 10em;
 }
 
@@ -153,46 +151,12 @@ header {
     padding: 10px;
     flex: 1;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
 }
 
-.cuerpo-izq div.contenedor-reseña div.texto-reseña p{
+.cuerpo-izq div.contenedor-reseña div.texto-reseña p {
     height: max-content;
 }
-
-
-/* Para dispositivos un ancho máximo de 480px SIN TERMINAR */
-@media (max-width: 480px) {
-
-    /* HEADER TEXTO - Control de tamaño icono y título*/
-    header{
-        font-size: 15px;
-    }
-
-    .fa-coins{  
-        font-size: 20px;
-    }
-    
-
-
-    /* CUERPO */
-
-    /* CUERPO IZQ */
-    .cuerpo-izq {
-        flex: 1; /* achica el tamaño de */
-    }
-
-    .cuerpo-izq ul.botones button {
-        min-height: 25px; /* ajusta altura minima de los botones */
-        font-size: xx-small; /* ajusta el tamaño de la letra en los botones */
-    }
-
-    .cuerpo-izq ul.botones button i {
-        font-size: xx-small;  /* ajusta el tamaño de los iconos en los botones */
-        padding-left: 0px; 
-    }
-}
-
 
 /* BARRA DERECHA*/
 .cuerpo-der{
@@ -313,18 +277,18 @@ div.contenedor-footer-inf{
     border-radius: 5px;
     color: white;
     font-size: 1em;
-    opacity: 0.7;
+    opacity: 0.85;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     animation: aparecer 0.5s, desaparecer 0.5s 4.5s; 
 }
 
 @keyframes aparecer {
     from { opacity: 0; }
-    to { opacity: 0.7; }
+    to { opacity: 0.85; }
 }
 
 @keyframes desaparecer {
-    from { opacity: 0.7; }
+    from { opacity: 0.85; }
     to { opacity: 0; }
 }
 
