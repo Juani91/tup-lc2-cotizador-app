@@ -1,3 +1,4 @@
+emailjs.init('user_WDMuRSBxfzzsEv0Pb')
 const Favoritos = JSON.parse(localStorage.getItem('Favoritos')) || [];
 const tablaInforme = document.getElementById('tablaInforme');
 const colores = [
@@ -258,42 +259,50 @@ function crearGrafico(listaFechas, datasets) {
 
 
 
+
 function compartirInformacion() {
     const botonCompartirInfo = document.getElementById('compartirEmail');
     const ventanaCompartir = document.getElementById('ventana-compartir');
     const botonCerrarFormulario = document.getElementById('boton-cerrar');
 
     botonCompartirInfo.addEventListener('click', () => {
-        ventanaCompartir.classList = ('ventana-compartir-active');
-        const botonEnviar = document.getElementById('enviarTabla')
+        ventanaCompartir.classList.add('ventana-compartir-active');
+
+        const botonEnviar = document.getElementById('enviarTabla');
         botonEnviar.addEventListener('click', () => {
-
-
             const nombreFormulario = document.getElementById('nombre').value;
             const emailFormulario = document.getElementById('email').value;
 
-            const formularioEnviar = {
-                nombre: nombreFormulario,
-                email: emailFormulario,
-            }
+            function validarMail(emailFormulario) {
+                emailValidado = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailValidado.test(emailFormulario);
+              }
+          
+              if (!validarMail(emailFormulario)) {
+                Alerta('Por favor ingrese e-mail válido.', 'warning');
+                return;
+              }
 
-            emailjs.send('service_m4eknnn', 'template_kcvbfxz', formularioEnviar, 'WDMuRSBxfzzsEv0Pb')
-            .then(function (response) {
-              console.log('¡Correo enviado con éxito!', response.status, response.text);
-              alert('¡Correo enviado con éxito!');
-              document.getElementById('formulario').reset();
-            }, function (error) {
-              console.error('¡Error al enviar el correo!', error);
-              alert('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.');
-            });
-
+            var formulario = {
+                nombreForm: nombreFormulario,
+                emailForm: emailFormulario,
+            };
+            emailjs.send('service_m4eknnn', 'template_kcvbfxz', formulario, 'WDMuRSBxfzzsEv0Pb')
+                .then((response) => {
+                    console.log('Correo enviado', response.status, response.text);
+                    Alerta('¡Correo enviado con éxito!', 'success');
+                })
+                .catch((error) => {
+                    console.log('Error al enviar el correo', error);
+                    Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
+                });
         });
     });
 
     botonCerrarFormulario.addEventListener('click', () => {
-        ventanaCompartir.classList = ('ventana-compartir');
+        ventanaCompartir.classList.remove('ventana-compartir-active');
     });
-};
+}
 
 compartirInformacion();
 generarTabla();
