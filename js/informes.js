@@ -270,8 +270,8 @@ function compartirInformacion() {
 
         const botonEnviar = document.getElementById('enviarTabla');
         botonEnviar.addEventListener('click', () => {
-            const nombreFormulario = document.getElementById('nombre').value;
-            const emailFormulario = document.getElementById('email').value;
+            let nombreFormulario = document.getElementById('nombre').value;
+            let emailFormulario = document.getElementById('email').value;
 
             function validarMail(emailFormulario) {
                 emailValidado = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -287,16 +287,19 @@ function compartirInformacion() {
                 nombreForm: nombreFormulario,
                 emailForm: emailFormulario,
             };
-            emailjs.send('service_m4eknnn', 'template_kcvbfxz', formulario, 'WDMuRSBxfzzsEv0Pb')
+            emailjs.send('service_m4eknnn', 'template_kcvbfxz', formulario , 'WDMuRSBxfzzsEv0Pb')
                 .then((response) => {
-                    console.log('Correo enviado', response.status, response.text);
+                    console.log('SUCCESS!', response.status, response.text);
                     Alerta('¡Correo enviado con éxito!', 'success');
+                    ventanaCompartir.classList.remove('ventana-compartir-active');
                 })
                 .catch((error) => {
-                    console.log('Error al enviar el correo', error);
+                    console.log('FAILED...', error);
                     Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
                 });
+           
         });
+        
     });
 
     botonCerrarFormulario.addEventListener('click', () => {
