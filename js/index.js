@@ -111,6 +111,7 @@ function fetchDatos() {
     // Esperar a que todas las solicitudes fetch se completen
     Promise.all([fetchDolares, ...fetchCotizaciones]).then(() => {
         localStorage.setItem('listaMonedas', JSON.stringify(listaMonedas));
+        cargarIndex();
     });
 }
 

@@ -1,4 +1,3 @@
-emailjs.init('user_WDMuRSBxfzzsEv0Pb')
 const Favoritos = JSON.parse(localStorage.getItem('Favoritos')) || [];
 const tablaInforme = document.getElementById('tablaInforme');
 const colores = [
@@ -30,7 +29,7 @@ const colores = [
 // Función para generar la tabla con los datos de Favoritos
 function generarTabla() {
     tablaInforme.innerHTML = '';
-    const monedaSelect = document.getElementById('monedaSelect')
+    let monedaSelect = document.getElementById('monedaSelect')
 
     // Agrupar por nombre de moneda
     const listaFavoritos = Favoritos.reduce((datos, favorito) => {
@@ -84,6 +83,8 @@ function generarTabla() {
                         iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-up"></i>';
                     } else if (favorito.venta < precioVentaPrevio) {
                         iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-down"></i>';
+                    } else {
+                        iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-minus"></i>';
                     }
                 }
                 precioVentaPrevio = favorito.venta;
@@ -105,9 +106,8 @@ function generarTabla() {
         });
     } else {
         let favoritoFiltrado = monedaSelect.value;
-        console.log(favoritoFiltrado);
         if (listaFavoritos[favoritoFiltrado].length > 0) {
-            
+
             listaFavoritos[favoritoFiltrado].sort((a, b) => new Date(a.fechaActualizacion) - new Date(b.fechaActualizacion));
             const fila = document.createElement('tr');
             const filaNombre = document.createElement('td');
@@ -141,6 +141,8 @@ function generarTabla() {
                         iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-up"></i>';
                     } else if (favorito.venta < precioVentaPrevio) {
                         iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-arrow-down"></i>';
+                    } else {
+                        iconoFlecha.innerHTML = '<i class="fa-solid fa-circle-minus"></i>';
                     }
                 }
                 precioVentaPrevio = favorito.venta;
@@ -162,7 +164,6 @@ function generarTabla() {
 }
 
 
-
 // Función para formatear la fecha
 function formatearFecha(dateString) {
     const date = new Date(dateString);
@@ -170,6 +171,16 @@ function formatearFecha(dateString) {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = String(date.getFullYear() % 100).padStart(2, '0');
     return `${day}/${month}/${year}`;
+}
+
+function FechaSinHora(fecha) {
+    let fechaFormateada = new Date(fecha).toLocaleDateString('es-AR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+
+    return fechaFormateada
 }
 
 let filtro = document.getElementById('filtro');
@@ -238,7 +249,7 @@ function tablaContenido() {
             });
         });
     }
-
+    
     crearGrafico(listaFechas, datasets);
 }
 
@@ -258,54 +269,109 @@ function crearGrafico(listaFechas, datasets) {
 }
 
 
-
-
 function compartirInformacion() {
     const botonCompartirInfo = document.getElementById('compartirEmail');
     const ventanaCompartir = document.getElementById('ventana-compartir');
     const botonCerrarFormulario = document.getElementById('boton-cerrar');
+    const botonEnviar = document.getElementById('enviarTabla');
 
     botonCompartirInfo.addEventListener('click', () => {
         ventanaCompartir.classList.add('ventana-compartir-active');
+    });
 
-        const botonEnviar = document.getElementById('enviarTabla');
-        botonEnviar.addEventListener('click', () => {
-            let nombreFormulario = document.getElementById('nombre').value;
-            let emailFormulario = document.getElementById('email').value;
+    botonEnviar.addEventListener('click', (event) => {
+        event.preventDefault();
+        let monedaSelect = document.getElementById('monedaSelect').value;
+        let nombreFormulario = document.getElementById('nombre').value;
+        let emailFormulario = document.getElementById('email').value;
+        let graficoInfo = {};
 
-            function validarMail(emailFormulario) {
-                emailValidado = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailValidado.test(emailFormulario);
-              }
-          
-              if (!validarMail(emailFormulario)) {
-                Alerta('Por favor ingrese e-mail válido.', 'warning');
-                return;
-              }
+        if (monedaSelect === 'TODAS') {
+            Favoritos.forEach(monedaGuardada => {
+                let monedaActual = monedaGuardada.nombre;
+                if (!graficoInfo[monedaActual]) {
+                    graficoInfo[monedaActual] = [];
+                }
 
-            var formulario = {
-                nombreForm: nombreFormulario,
-                emailForm: emailFormulario,
-            };
-            emailjs.send('service_m4eknnn', 'template_kcvbfxz', formulario , 'WDMuRSBxfzzsEv0Pb')
-                .then((response) => {
-                    console.log('SUCCESS!', response.status, response.text);
-                    Alerta('¡Correo enviado con éxito!', 'success');
-                    ventanaCompartir.classList.remove('ventana-compartir-active');
-                })
-                .catch((error) => {
-                    console.log('FAILED...', error);
-                    Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
+                Favoritos.forEach(monedaRecorrida => {
+                    if (monedaActual === monedaRecorrida.nombre) {
+                        let fechaFormateada = formatearFecha(monedaRecorrida.fechaActualizacion);
+
+                        let entradaExiste = graficoInfo[monedaActual].some(item =>
+                            item.fecha === fechaFormateada &&
+                            item.compra === monedaRecorrida.compra &&
+                            item.venta === monedaRecorrida.venta
+                        );
+
+                        if (!entradaExiste) {
+                            graficoInfo[monedaActual].push({
+                                fecha: fechaFormateada,
+                                compra: monedaRecorrida.compra,
+                                venta: monedaRecorrida.venta
+                            });
+                        }
+                    }
                 });
-           
-        });
-        
-    });
+            });
+        } else {
+            graficoInfo[monedaSelect] = [];
+            
+            Favoritos.forEach(moneda => {
+                if (moneda.nombre === monedaSelect) {
+                    let fechaFormateada = formatearFecha(moneda.fechaActualizacion);
+                    graficoInfo[monedaSelect].push({
+                        fecha: fechaFormateada,
+                        compra: moneda.compra,
+                        venta: moneda.venta
+                    });
+                }
+            })
+        }
 
-    botonCerrarFormulario.addEventListener('click', () => {
-        ventanaCompartir.classList.remove('ventana-compartir-active');
-    });
-}
+        function validarMail(emailFormulario) {
+            emailValidado = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailValidado.test(emailFormulario);
+        }
+
+
+        if (!validarMail(emailFormulario)) {
+            Alerta('Por favor ingrese e-mail válido.', 'warning');
+            return ;
+        }
+
+        let graficoString = JSON.stringify(graficoInfo, null, 2)
+        console.log(graficoString);
+        var formulario = {
+            nombreForm: nombreFormulario,
+            emailForm: emailFormulario,
+            graficoForm: graficoString,
+        };
+
+        emailjs.send('service_ylsbds2', 'template_murvfzv', formulario, '-8cfnd3ntwRy27zP1')
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                Alerta('¡Correo enviado con éxito!', 'success');
+                limpiarCerrar();
+            })
+            .catch((error) => {
+                console.log('FAILED...', error);
+                Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
+                limpiarCerrar();
+            });
+
+        botonCerrarFormulario.addEventListener('click', () => {
+            limpiarCerrar();
+        });
+
+        function limpiarCerrar() {
+            document.getElementById('nombre').value = '';
+            document.getElementById('email').value = '';
+            ventanaCompartir.classList.remove('ventana-compartir-active');
+        }
+    })
+};
+
+
 
 compartirInformacion();
 generarTabla();
