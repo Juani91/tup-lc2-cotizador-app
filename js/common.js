@@ -1,5 +1,3 @@
-enviarMail = document.gete
-
 const opiniones = [
     {
         imagen: "img/muchachon.jpg",

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       mensaje: mensaje
     };
 
-    emailjs.send('formulario', 'template_dag5nc4', formulario, 'WDMuRSBxfzzsEv0Pb')
+    emailjs.send('service_irw27ab', 'template_hjxsa2b', formulario, 'W25JQEpNq8ULE2UAn')
       .then(function (response) {
         console.log('¡Correo enviado con éxito!', response.status, response.text);
         Alerta('¡Correo enviado con éxito!', 'success');

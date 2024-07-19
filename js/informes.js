@@ -340,14 +340,14 @@ function compartirInformacion() {
         }
 
         let graficoString = JSON.stringify(graficoInfo, null, 2)
-        console.log(graficoString);
+        
         var formulario = {
             nombreForm: nombreFormulario,
             emailForm: emailFormulario,
             graficoForm: graficoString,
         };
 
-        emailjs.send('service_ylsbds2', 'template_murvfzv', formulario, '-8cfnd3ntwRy27zP1')
+        emailjs.send('service_irw27ab', 'template_3lob7ic', formulario, 'W25JQEpNq8ULE2UAn')
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
                 Alerta('¡Correo enviado con éxito!', 'success');
