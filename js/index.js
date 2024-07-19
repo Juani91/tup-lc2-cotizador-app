@@ -1,5 +1,5 @@
 const botonFiltro = document.getElementById('boton-filtro');
-const contenedorDatos = document.querySelector('.cotizaciones-container-index');
+const contenedorDatos = document.getElementById('contenedor-general');
 const textoFecha = document.querySelector('.texto-datos-actualizados');
 
 let arrayDolares = [];
@@ -36,7 +36,6 @@ function compararFechasSinHora(fecha1, fecha2) {
 }
 
 function cambiarFechayHora() {
-
     // Mostrar la fecha actual al inicio
     const now = new Date();
     const formattedDate = now.toLocaleDateString('es-AR', {
@@ -48,8 +47,9 @@ function cambiarFechayHora() {
     });
     textoFecha.innerHTML = `Datos actualizados al ${formattedDate}`;
 
-    // Actualizar la fecha cada 5 minutos
+    // Actualizar la fecha cada 5 mins
     setInterval(() => {
+        console.log('Actualizando datos...'); // Mensaje de depuración
         const now = new Date();
         const formattedDate = now.toLocaleDateString('es-AR', {
             year: 'numeric',
@@ -60,15 +60,15 @@ function cambiarFechayHora() {
         });
         textoFecha.innerHTML = `Datos actualizados al ${formattedDate}`;
 
-        localStorage.setItem('listaMonedas', '');
-        fetchDatos();
-        cargarIndex();
-    }, 300000);
+        localStorage.removeItem('listaMonedas');
 
+        fetchDatos();
+        
+    }, 300000);
 }
 
-
 function fetchDatos() {
+    listaMonedas = [];
     const fetchDolares = fetch('https://dolarapi.com/v1/dolares')
         .then(response => response.json())
         .then(data => {
@@ -118,8 +118,8 @@ function fetchDatos() {
 
 function cargarIndex() {
 
-    var listaMonedasIndex = localStorage.getItem('listaMonedas');
-    var listaMonedasIndexJSON = JSON.parse(listaMonedasIndex);
+    let listaMonedasIndex = localStorage.getItem('listaMonedas');
+    let listaMonedasIndexJSON = JSON.parse(listaMonedasIndex);
 
     contenedorDatos.innerHTML = '';
 
@@ -237,5 +237,4 @@ function crearItem(item) {
 
 fetchDatos();
 cambiarFechayHora();
-cargarIndex();
 botonFiltro.addEventListener("click", elegirMoneda);    

@@ -249,7 +249,7 @@ function tablaContenido() {
             });
         });
     }
-    
+
     crearGrafico(listaFechas, datasets);
 }
 
@@ -315,7 +315,7 @@ function compartirInformacion() {
             });
         } else {
             graficoInfo[monedaSelect] = [];
-            
+
             Favoritos.forEach(moneda => {
                 if (moneda.nombre === monedaSelect) {
                     let fechaFormateada = formatearFecha(moneda.fechaActualizacion);
@@ -336,41 +336,46 @@ function compartirInformacion() {
 
         if (!validarMail(emailFormulario)) {
             Alerta('Por favor ingrese e-mail válido.', 'warning');
-            return ;
+            return;
         }
 
         let graficoString = JSON.stringify(graficoInfo, null, 2)
-        
-        var formulario = {
-            nombreForm: nombreFormulario,
-            emailForm: emailFormulario,
-            graficoForm: graficoString,
-        };
 
-        emailjs.send('service_irw27ab', 'template_3lob7ic', formulario, 'W25JQEpNq8ULE2UAn')
-            .then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                Alerta('¡Correo enviado con éxito!', 'success');
-                limpiarCerrar();
-            })
-            .catch((error) => {
-                console.log('FAILED...', error);
-                Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
-                limpiarCerrar();
-            });
+        if (nombreFormulario == null || nombreFormulario.length == 0) {
+            Alerta('Por favor ingrese un nombre.', 'warning');
+            return;
+        } else {
+            let formulario = {
+                nombreForm: nombreFormulario,
+                emailForm: emailFormulario,
+                graficoForm: graficoString,
+            };
 
-        botonCerrarFormulario.addEventListener('click', () => {
-            limpiarCerrar();
-        });
 
-        function limpiarCerrar() {
-            document.getElementById('nombre').value = '';
-            document.getElementById('email').value = '';
-            ventanaCompartir.classList.remove('ventana-compartir-active');
+            emailjs.send('service_irw27ab', 'template_3lob7ic', formulario, 'W25JQEpNq8ULE2UAn')
+                .then((response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                    Alerta('¡Correo enviado con éxito!', 'success');
+                    limpiarCerrar();
+                })
+                .catch((error) => {
+                    console.log('FAILED...', error);
+                    Alerta('¡Error al enviar el correo! Por favor, inténtalo de nuevo más tarde.', 'error');
+                    limpiarCerrar();
+                });
         }
-    })
-};
+})
 
+function limpiarCerrar() {
+    document.getElementById('nombre').value = '';
+    document.getElementById('email').value = '';
+    ventanaCompartir.classList.remove('ventana-compartir-active');
+}
+
+botonCerrarFormulario.addEventListener('click', () => {
+    limpiarCerrar();
+});
+};
 
 if (Favoritos.length === 0) {
     Alerta('NO HAY COTIZACIONES GUARDADAS', 'error');
