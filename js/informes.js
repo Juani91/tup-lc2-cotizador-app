@@ -372,7 +372,10 @@ function compartirInformacion() {
 };
 
 
-
-compartirInformacion();
-generarTabla();
-tablaContenido();
+if (Favoritos.length === 0) {
+    Alerta('NO HAY COTIZACIONES GUARDADAS', 'error');
+} else {
+    compartirInformacion();
+    generarTabla();
+    tablaContenido();
+}
